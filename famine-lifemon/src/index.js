@@ -1,18 +1,15 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from '@mui/material/Button';
 
 function App() {
 	return (
-		<>
-			<Button 
-				variant = "primary"
-			>
-				Primary button
-			</Button>{' '}
-		</>
+		<Button
+			variant = "contained"
+		>
+			Hello world
+		</Button>
 	);
 }
 
