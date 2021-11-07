@@ -5,6 +5,18 @@ import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 
 class Stats extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			name: "Adrian Wong",
+			health: 10,
+			happiness: 10,
+			money: 1500,
+			health_symbol: "❤️",
+			happy_symbol: "😄"
+		}
+	}
+
 	render () {
 		return (
 			<Card variant="outlined">
@@ -16,7 +28,7 @@ class Stats extends React.Component {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body1">
-							Adrian Wong
+							{this.state.name}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
@@ -26,7 +38,7 @@ class Stats extends React.Component {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body1">
-							❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️
+							{this.state.health_symbol.repeat(this.state.health)}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
@@ -36,7 +48,7 @@ class Stats extends React.Component {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body1">
-							😄😄😄😄😄😄😄😄😄😄😄😄😄😄😄
+							{this.state.happy_symbol.repeat(this.state.happiness)}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
@@ -46,7 +58,7 @@ class Stats extends React.Component {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body1">
-							$1500
+							{"$" + this.state.money}
 						</Typography>
 					</Grid>
 				</Grid>
