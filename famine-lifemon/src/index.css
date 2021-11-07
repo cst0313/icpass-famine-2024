@@ -9,3 +9,8 @@
 	align-items: center;
 	color: gray;
 }
+
+.qrcode {
+	align: center;
+	padding: 10px;
+}
