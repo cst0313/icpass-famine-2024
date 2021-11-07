@@ -1,0 +1,11 @@
+.logo {
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	color: gray;
+}
