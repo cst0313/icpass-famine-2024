@@ -57,7 +57,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{"$" + snapshot.money}
+						{loading ? "Lodaing" : "$" + snapshot.money}
 					</Typography>
 				</Grid>
 			</Grid>
