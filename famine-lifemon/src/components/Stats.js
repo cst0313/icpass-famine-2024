@@ -10,12 +10,11 @@ import { db } from '../database/firebase';
 
 export default function Stats() {
 	const [snapshot, loading, error] = useDocumentData(
-		doc(db, "users", "euLcu7FQBzyTjYprBpzT")
+		doc(db, "users", "vUJX7cYugmFLgpmiTruU")
 	);
 	if (error) {
 		console.log(JSON.stringify(error));
 	}
-	console.log(snapshot);
 	const happy_symbol = "😄";
 	const health_symbol = "❤️";
 	return (
@@ -28,7 +27,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						Adrian Wong
+						{loading ? "Loading" : snapshot.name}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -38,7 +37,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{health_symbol.repeat(10)}
+						{loading ? "Loading" : health_symbol.repeat(snapshot.health)}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -48,7 +47,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{happy_symbol.repeat(10)}
+						{loading ? "Loading" : happy_symbol.repeat(snapshot.happiness)}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -58,7 +57,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{"$" + 1500}
+						{"$" + snapshot.money}
 					</Typography>
 				</Grid>
 			</Grid>
