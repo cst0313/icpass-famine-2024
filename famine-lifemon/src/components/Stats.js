@@ -3,7 +3,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
-import { doc, DocumentSnapshot } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 
 import { db } from '../database/firebase';
