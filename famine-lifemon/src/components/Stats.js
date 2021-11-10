@@ -1,16 +1,16 @@
 import * as React from 'react';
 
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
 import { doc } from 'firebase/firestore';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 
-import { db } from '../database/firebase';
+import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 
-export default function Stats() {
+import { db } from '../database/firebase';
+export default function Stats(id) {
 	const [snapshot, loading, error] = useDocumentData(
-		doc(db, "users", "vUJX7cYugmFLgpmiTruU")
+		doc(db, "users", id.id)
 	);
 	if (error) {
 		console.log(JSON.stringify(error));
@@ -27,7 +27,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{loading ? "Loading" : snapshot.name}
+						{loading ? "Lodaing..." : snapshot.name}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -37,7 +37,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{loading ? "Loading" : health_symbol.repeat(snapshot.health)}
+						{loading ? "Loading..." : health_symbol.repeat(snapshot.health)}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -47,7 +47,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{loading ? "Loading" : happy_symbol.repeat(snapshot.happiness)}
+						{loading ? "Loading..." : happy_symbol.repeat(snapshot.happiness)}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -57,7 +57,7 @@ export default function Stats() {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{loading ? "Lodaing" : "$" + snapshot.money}
+						{loading ? "Loading..." : "$" + snapshot.money}
 					</Typography>
 				</Grid>
 			</Grid>
