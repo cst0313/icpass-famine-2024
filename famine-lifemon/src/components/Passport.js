@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useCookies } from 'react-cookie';
 
 import Stats from './Stats';
-import Code from './Code';
 import NewUser from './NewUser';
+import QRBlock from './QRBlock';
 
 export default function Passport() {
 	const [cookies, setCookie] = useCookies(['id']);
@@ -15,7 +15,7 @@ export default function Passport() {
 	return (
 		<>
 			<Stats id={cookies.id} />
-			<Code id={cookies.id} />
+			<QRBlock id={cookies.id} />
 		</>
 	);
 }
