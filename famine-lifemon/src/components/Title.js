@@ -8,13 +8,13 @@ export default function Title() {
 	return (
 		<Box sx={{background:'linear-gradient(45deg, #7DC8CA 30%, #CAE9E0 90%)', p:0,m:-2}}>
 			<Grid container spacing={2} direction="row" justify="center" alignItems="center" alignContent="center">
-				<Grid item xs={4.5} align="center" justifyContent="center">
+				<Grid item xs={4} align="center" justifyContent="center">
 					<img
 						className="logo"
 						src="passlogo.png"
 						alt="ICPASS logo"/>
 				</Grid>
-				<Grid item className="title" xs={7.5} p={0}>
+				<Grid item className="title" xs={8} p={0}>
 					<Typography
 						variant="h5"
 						fontSize={35}
