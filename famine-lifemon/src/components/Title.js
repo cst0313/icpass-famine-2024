@@ -16,7 +16,7 @@ export default function Title() {
 					variant="h4"
 					fontSize={30}
 				>
-					ICPASS Famine 24 Passport
+					Famine 24 Passport
 				</Typography>
 			</Grid>
 		</Grid>
