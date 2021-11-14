@@ -46,7 +46,7 @@ export default function Stats(id) {
 				</Grid>
 				<Grid item xs={3}>
 					<Typography variant="body1">
-						Happniess: 
+						Happiness: 
 					</Typography>
 				</Grid>
 				<Grid item xs={8}>
