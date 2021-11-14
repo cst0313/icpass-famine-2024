@@ -15,8 +15,9 @@ export default function Stats(id) {
 	if (error) {
 		console.log(JSON.stringify(error));
 	}
-	const happy_symbol = "😄";
-	const health_symbol = "❤️";
+	const happySymbol = "😄";
+	const healthSymbol = "❤️";
+	const educationMap = ["None", "Secondary", "Bachelor's", "Master's"];
 	return (
 		<Card variant="outlined">
 			<Grid container spacing={2} fontSize={20}>
@@ -27,7 +28,7 @@ export default function Stats(id) {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{loading ? "Lodaing..." : snapshot.name}
+						{loading ? "Loading..." : snapshot.name}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -37,7 +38,7 @@ export default function Stats(id) {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{loading ? "Loading..." : health_symbol.repeat(snapshot.health)}
+						{loading ? "Loading..." : healthSymbol.repeat(snapshot.health)}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -47,7 +48,7 @@ export default function Stats(id) {
 				</Grid>
 				<Grid item xs={8}>
 					<Typography variant="body1">
-						{loading ? "Loading..." : happy_symbol.repeat(snapshot.happiness)}
+						{loading ? "Loading..." : happySymbol.repeat(snapshot.happiness)}
 					</Typography>
 				</Grid>
 				<Grid item xs={3}>
@@ -58,6 +59,26 @@ export default function Stats(id) {
 				<Grid item xs={8}>
 					<Typography variant="body1">
 						{loading ? "Loading..." : "$" + snapshot.money}
+					</Typography>
+				</Grid>
+				<Grid item xs={3}>
+					<Typography variant="body1">
+						Education:
+					</Typography>
+				</Grid>
+				<Grid item xs={8}>
+					<Typography variant="body1">
+						{loading ? "Loading..." : educationMap[snapshot.education]}
+					</Typography>
+				</Grid>
+				<Grid item xs={3}>
+					<Typography variant="body1">
+						Married?
+					</Typography>
+				</Grid>
+				<Grid item xs={8}>
+					<Typography variant="body1">
+						{loading ? "Loading..." : snapshot.married ? "Yes" : "No"}
 					</Typography>
 				</Grid>
 			</Grid>

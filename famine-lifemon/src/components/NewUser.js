@@ -6,8 +6,9 @@ import { setDoc, doc } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
-export default function NewUser(setCookie) {
+export default function NewUser(props) {
 	const [name, setName] = useState("");
+	const setCookie = props.setCookie;
 	
 	const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
@@ -24,12 +25,27 @@ export default function NewUser(setCookie) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const id = generateString(20);
-		setDoc(doc(db, "users", id), {
-			name: name,
-			health: 10,
-			happiness: 10,
-			money: 1500
-		});
+		if (Math.random() < 0.2) {
+			setDoc(doc(db, "users", id), {
+				name: name,
+				health: 10,
+				happiness: 10,
+				money: 1000,
+				education: 2,
+				married: false,
+				covid: false
+			});
+		} else {
+			setDoc(doc(db, "users", id), {
+				name: name,
+				health: 10,
+				happiness: 10,
+				money: 500,
+				education: 0,
+				married: false,
+				covid: false
+			});
+		}
 		setCookie("id", id);
 	}
 
