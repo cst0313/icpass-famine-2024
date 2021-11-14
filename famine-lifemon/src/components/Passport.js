@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { useCookies } from 'react-cookie';
 
 import Stats from './Stats';
 import NewUser from './NewUser';
 import QRBlock from './QRBlock';
 
-export default function Passport() {
-	const [cookies, setCookie] = useCookies(['id']);
+export default function Passport(props) {
+	const cookies = props.cookies;
+	const setCookie = props.setCookie;
 	if (!cookies.id) {
 		return (
 			<NewUser setCookie={setCookie}/>

@@ -6,7 +6,7 @@ import { setDoc, doc } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
-export default function NewUser(props) {
+export default function NewUser(setCookie) {
 	const [name, setName] = useState("");
 	
 	const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -30,7 +30,7 @@ export default function NewUser(props) {
 			happiness: 10,
 			money: 1500
 		});
-		props.setCookie("id", id);
+		setCookie("id", id);
 	}
 
 	return (
