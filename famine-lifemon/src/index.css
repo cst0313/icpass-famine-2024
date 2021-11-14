@@ -7,7 +7,7 @@
 .title {
 	display: flex;
 	align-items: center;
-	color: gray;
+	color: #4b4b4b;
 }
 
 .qrcode {

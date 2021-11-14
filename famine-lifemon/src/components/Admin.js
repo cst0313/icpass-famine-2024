@@ -1,11 +1,15 @@
 import * as React from 'react';
 
-import { Typography } from '@mui/material';
+import { Typography, Card } from '@mui/material';
 
 export default function Admin() {
 	return (
-		<Typography variant="h1">
-			Admin page
-		</Typography>
-	)
+		<div>
+			<Card variant="outlined">
+				<Typography variant="h1">
+					Admin Page
+				</Typography>
+			</Card>
+		</div>
+	);
 }

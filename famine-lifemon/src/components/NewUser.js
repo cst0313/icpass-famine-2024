@@ -33,7 +33,8 @@ export default function NewUser(props) {
 				money: 1000,
 				education: 2,
 				married: false,
-				covid: false
+				covid: false,
+				cured: false
 			});
 		} else {
 			setDoc(doc(db, "users", id), {
@@ -43,7 +44,8 @@ export default function NewUser(props) {
 				money: 500,
 				education: 0,
 				married: false,
-				covid: false
+				covid: false,
+				cured: false
 			});
 		}
 		setCookie("id", id);
