@@ -8,6 +8,7 @@ import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 
 import { db } from '../database/firebase';
+
 export default function Stats(id) {
 	const [snapshot, loading, error] = useDocumentData(
 		doc(db, "users", id.id)
@@ -19,7 +20,9 @@ export default function Stats(id) {
 	const healthSymbol = "❤️";
 	const educationMap = ["None", "Secondary", "Bachelor's", "Master's"];
 	return (
-		<Card variant="outlined">
+		<Card variant="outlined" sx={{
+			borderColor: loading ? "" : snapshot.covid ? "error.main" : ""
+		}}>
 			<Grid container spacing={2} fontSize={20}>
 				<Grid item xs={3}>
 					<Typography variant="body1">
