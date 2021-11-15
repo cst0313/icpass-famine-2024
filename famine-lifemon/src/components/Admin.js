@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox } from '@mui/material';
+import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox, RadioGroup, Radio, FormControl } from '@mui/material';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -11,7 +11,8 @@ export default function Admin() {
 		happiness : 0,
 		health : 0,
 		money : 0,
-		taxed : false
+		taxed : false,
+		education : 0
 	});
 	const [expanded, setExpanded] = React.useState("");
 
@@ -148,6 +149,21 @@ export default function Admin() {
 							Job-specific settings
 						</Typography>
 					</AccordionSummary>
+					<AccordionDetails>
+						<Typography>
+							Education
+						</Typography>
+						<FormControl component="fieldset">
+							<RadioGroup row value={formData.education} onChange={
+								(e) => setFormData({...formData, education: parseInt(e.target.value)})
+							}>
+								<FormControlLabel value={0} control={<Radio />} label="None" />
+								<FormControlLabel value={1} control={<Radio />} label="Secondary" />
+								<FormControlLabel value={2} control={<Radio />} label="Bachelor's" />
+								<FormControlLabel value={3} control={<Radio />} label="Master's" />
+							</RadioGroup>
+						</FormControl>
+					</AccordionDetails>
 				</Accordion>
 			</Card>
 			<Code 
@@ -155,6 +171,7 @@ export default function Admin() {
 				health={formData.health} 
 				money={formData.money} 
 				taxed={formData.taxed && formData.money >= 800}
+				education={formData.education}
 			/>
 		</div>
 	);
