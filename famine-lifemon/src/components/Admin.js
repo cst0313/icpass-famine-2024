@@ -186,6 +186,7 @@ export default function Admin() {
 				</Accordion>
 			</Card>
 			<Code 
+				header="famine-2021-lifemon"
 				happiness={formData.happiness} 
 				health={formData.health} 
 				money={formData.money} 
