@@ -1,15 +1,24 @@
 import * as React from 'react';
 
-import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid } from '@mui/material';
+import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox } from '@mui/material';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+import Code from './Code';
 
 export default function Admin() {
 	const [formData, setFormData] = React.useState({
 		happiness : 0,
 		health : 0,
-		money : 0
+		money : 0,
+		taxed : false
 	});
+	const [expanded, setExpanded] = React.useState("");
+
+	const handleExpand = (panel) => (event, isExpanded) => {
+		setExpanded(isExpanded ? panel : "");
+	}
+
 	function handleHBlur () {
 		if (formData.happiness < -5) {
 			setFormData({formData, happiness: -5});
@@ -20,8 +29,8 @@ export default function Admin() {
 	return (
 		<div>
 			<Card variant="outlined">
-				<Accordion>
-					<AccordionSummary expandIcon={<ExpandMoreIcon />} >
+				<Accordion expanded={expanded === 'general'} onChange={handleExpand('general')}>
+					<AccordionSummary  expandIcon={<ExpandMoreIcon />} >
 						<Typography>General settings</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
@@ -126,9 +135,27 @@ export default function Admin() {
 								/>
 							</Grid>
 						</Grid>
+						<FormControlLabel disabled={formData.money < 800} control={
+							<Checkbox checked={formData.taxed} onChange={
+								(e) => setFormData({...formData, taxed: e.target.checked})
+							} />
+						} label="Taxed?" />
 					</AccordionDetails>
 				</Accordion>
+				<Accordion expanded={expanded === 'extra'} onChange={handleExpand('extra')}>
+					<AccordionSummary expandIcon={<ExpandMoreIcon />} >
+						<Typography>
+							Job-specific settings
+						</Typography>
+					</AccordionSummary>
+				</Accordion>
 			</Card>
+			<Code 
+				happiness={formData.happiness} 
+				health={formData.health} 
+				money={formData.money} 
+				taxed={formData.taxed && formData.money >= 800}
+			/>
 		</div>
 	);
 }
