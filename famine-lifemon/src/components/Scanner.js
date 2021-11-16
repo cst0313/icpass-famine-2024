@@ -23,7 +23,7 @@ export default function Scanner(id) {
 			}}
 				onResult={handleResult}
 				style={{
-					width: '100%',
+					width: '100%'
 					
 				}}
 			/>
