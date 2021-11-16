@@ -6,7 +6,7 @@ import Title from './Title';
 
 export default function Layout() {
 	return (
-		<Stack spacing={2}>
+		<Stack spacing={5}>
 			<Title />
 			<Outlet />
 		</Stack>
