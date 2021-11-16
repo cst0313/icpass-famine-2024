@@ -1,15 +1,28 @@
 import * as React from 'react';
 
-import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid } from '@mui/material';
+import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox, RadioGroup, Radio, FormGroup } from '@mui/material';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+import Code from './Code';
 
 export default function Admin() {
 	const [formData, setFormData] = React.useState({
 		happiness : 0,
 		health : 0,
-		money : 0
+		money : 0,
+		taxed : false,
+		education : 0,
+		jailed : false,
+		cured : false,
+		married : false
 	});
+	const [expanded, setExpanded] = React.useState("");
+
+	const handleExpand = (panel) => (event, isExpanded) => {
+		setExpanded(isExpanded ? panel : "");
+	}
+
 	function handleHBlur () {
 		if (formData.happiness < -5) {
 			setFormData({formData, happiness: -5});
@@ -20,8 +33,8 @@ export default function Admin() {
 	return (
 		<div>
 			<Card variant="outlined">
-				<Accordion>
-					<AccordionSummary expandIcon={<ExpandMoreIcon />} >
+				<Accordion expanded={expanded === 'general'} onChange={handleExpand('general')}>
+					<AccordionSummary  expandIcon={<ExpandMoreIcon />} >
 						<Typography>General settings</Typography>
 					</AccordionSummary>
 					<AccordionDetails>
@@ -126,9 +139,63 @@ export default function Admin() {
 								/>
 							</Grid>
 						</Grid>
+						<FormControlLabel disabled={formData.money < 800} control={
+							<Checkbox checked={formData.taxed} onChange={
+								(e) => setFormData({...formData, taxed: e.target.checked})
+							} />
+						} label="Taxed?" />
+					</AccordionDetails>
+				</Accordion>
+				<Accordion expanded={expanded === 'extra'} onChange={handleExpand('extra')}>
+					<AccordionSummary expandIcon={<ExpandMoreIcon />} >
+						<Typography>
+							Job-specific settings
+						</Typography>
+					</AccordionSummary>
+
+					<AccordionDetails>
+						<Typography>
+							Education
+						</Typography>
+
+						<RadioGroup row value={formData.education} onChange={
+							(e) => setFormData({...formData, education: parseInt(e.target.value)})
+						}>
+							<FormControlLabel value={0} control={<Radio />} label="None" />
+							<FormControlLabel value={1} control={<Radio />} label="Secondary" />
+							<FormControlLabel value={2} control={<Radio />} label="Bachelor's" />
+							<FormControlLabel value={3} control={<Radio />} label="Master's" />
+						</RadioGroup>
+						
+						<Typography>
+							Other settings
+						</Typography>
+
+						<FormGroup row>
+							<FormControlLabel checked={formData.jailed} control={<Checkbox onChange={
+								(e) => setFormData({...formData, jailed: e.target.checked})
+							} />} label="Jailed" />
+							<FormControlLabel checked={formData.cured} control={<Checkbox onChange={
+								(e) => setFormData({...formData, cured: e.target.checked})
+							} />} label="Cured COVID" />
+							<FormControlLabel checked={formData.married} control={<Checkbox onChange={
+								(e) => setFormData({...formData, married: e.target.checked})
+							} />} label="Married" />
+						</FormGroup>
 					</AccordionDetails>
 				</Accordion>
 			</Card>
+			<Code 
+				header="famine-2021-lifemon"
+				happiness={formData.happiness} 
+				health={formData.health} 
+				money={formData.money} 
+				taxed={formData.taxed && formData.money >= 800}
+				education={formData.education}
+				jailed={formData.jailed}
+				cured={formData.cured}
+				married={formData.married}
+			/>
 		</div>
 	);
 }
