@@ -2,13 +2,12 @@ import * as React from 'react';
 import { QrReader } from "@blackbox-vision/react-qr-reader";
 import { Snackbar, Slide, Alert } from '@mui/material';
 
-export default function Scanner(id) {
+export default function Scanner(props) {
 	const [successOpen, setSuccessOpen] = React.useState(false);
 	const [failOpen, setFailOpen] = React.useState(false);
 
 	function handleResult(result, error) {
 		if (!!result) {
-			console.log(result.text);
 			try {
 				const header = JSON.parse(result.text).header;
 				if (header === 'famine-2021-lifemon') {
@@ -39,6 +38,7 @@ export default function Scanner(id) {
 			/>
 			<Snackbar
 				open={failOpen}
+				autoHideDuration={2000}
 				onClose={
 					(e) => setFailOpen(false)
 				}
@@ -56,6 +56,7 @@ export default function Scanner(id) {
 			</Snackbar>
 			<Snackbar
 				open={successOpen}
+				autoHideDuration={2000}
 				onClose={
 					(e) => setSuccessOpen(false)
 				}
