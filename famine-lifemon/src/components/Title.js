@@ -6,22 +6,32 @@ import { palette } from '@mui/system';
 
 export default function Title() {
 	return (
-		<Box sx={{background:'linear-gradient(45deg, #7DC8CA 30%, #CAE9E0 90%)', p:0,m:-2}}>
-			<Grid container spacing={2} direction="row" justify="center" alignItems="center" alignContent="center">
-				<Grid item xs={4} align="center" justifyContent="center">
+		<Box sx={{background:"#1F3149", p:0,m:-2}}>
+			<Grid container spacing={2} direction="row" >
+				<Grid item className="title" xs={5} p={0} style={{justifyContent:"flex-end", alignItems:"center"}}>
+					<Typography
+						variant="h5"
+						fontSize={22}
+						fontWeight='bold'
+						lineWeight={1}
+					>
+						Famine 24
+					</Typography>
+				</Grid>	
+				<Grid item xs={2} style={{alignItems:"center"}} p={0}>
 					<img
 						className="logo"
 						src="passlogo.png"
 						alt="ICPASS logo"/>
 				</Grid>
-				<Grid item className="title" xs={8} p={0}>
+				<Grid item className="title" xs={5} p={0} style={{justifyContent:"flex-start", alignItems:"center"}}>
 					<Typography
 						variant="h5"
-						fontSize={35}
+						fontSize={22}
 						fontWeight='bold'
 						lineHeight={1}
 					>
-						Famine 24 Passport
+						Passport
 					</Typography>
 				</Grid>
 			</Grid>
