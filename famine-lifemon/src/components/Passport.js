@@ -15,7 +15,7 @@ export default function Passport(props) {
 	return (
 		<>
 			<Stats id={cookies.id} />
-			<QRBlock header="famine-2021-lifemon" id={cookies.id} />
+			<QRBlock id={cookies.id} />
 		</>
 	);
 }

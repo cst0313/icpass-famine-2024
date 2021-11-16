@@ -17,7 +17,7 @@ export default function QRBlock(id) {
 	if (checked) {
 		block = <Scanner id={id.id} />;
 	} else {
-		block = <Code id={id.id} />;
+		block = <Code header="famine-2021-lifemon" id={id.id} />;
 	}
 
 	return (
