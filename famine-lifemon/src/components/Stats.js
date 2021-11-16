@@ -24,7 +24,7 @@ export default function Stats(id) {
 		console.log(JSON.stringify(error));
 	}
 	const happySymbol = "😄";
-	const healthSymbol = "❤️";
+	const healthSymbol = "🍎️";
 	const educationMap = ["None", "Secondary", "Bachelor's", "Master's"];
 	return (
 		<>

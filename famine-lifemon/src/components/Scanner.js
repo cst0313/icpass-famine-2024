@@ -1,13 +1,24 @@
 import * as React from 'react';
 import { QrReader } from "@blackbox-vision/react-qr-reader";
-import { Typography } from '@mui/material';
+import { Snackbar, Slide, Alert } from '@mui/material';
 
 export default function Scanner(id) {
-	const [data, setData] = React.useState('No result');
+	const [successOpen, setSuccessOpen] = React.useState(false);
+	const [failOpen, setFailOpen] = React.useState(false);
 
 	function handleResult(result, error) {
 		if (!!result) {
-			setData(result.text);
+			console.log(result.text);
+			try {
+				const header = JSON.parse(result.text).header;
+				if (header === 'famine-2021-lifemon') {
+					setSuccessOpen(true);
+				} else {
+					setFailOpen(true);
+				}
+			} catch (e) {
+				setFailOpen(true);
+			}
 		}
 
 		if (!!error) {
@@ -24,12 +35,42 @@ export default function Scanner(id) {
 				onResult={handleResult}
 				style={{
 					width: '100%'
-					
 				}}
 			/>
-			<Typography variant="body1">
-				{data}
-			</Typography>
+			<Snackbar
+				open={failOpen}
+				onClose={
+					(e) => setFailOpen(false)
+				}
+				TransitionComponent={Slide}
+			>
+				<Alert 
+					severity="error" 
+					sx={{width: '100%'}}
+					onClose={
+						(e) => setFailOpen(false)
+					}
+				>
+					Invalid QR code
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={successOpen}
+				onClose={
+					(e) => setSuccessOpen(false)
+				}
+				TransitionComponent={Slide}
+			>
+				<Alert
+					severity='success'
+					sx={{width: '100%'}}
+					onClose={
+						(e) => setSuccessOpen(false)
+					}
+				>
+					Scan success
+				</Alert>
+			</Snackbar>
 		</>
 	);
 }

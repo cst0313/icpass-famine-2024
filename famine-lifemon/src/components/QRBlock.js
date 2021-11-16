@@ -11,7 +11,6 @@ export default function QRBlock(id) {
 	let block;
 
 	function handleChange() {
-		console.log(checked);
 		setChecked(!checked);
 	}
 
