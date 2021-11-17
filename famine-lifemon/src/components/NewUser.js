@@ -9,9 +9,9 @@ import { setDoc, doc } from 'firebase/firestore';
 import { db } from '../database/firebase';
 
 export default function NewUser(props) {
-	const theme_3 = createTheme({
+	const theme_2 = createTheme({
 		typography: {
-			fontFamily:'Courier+Prime'
+			fontFamily:'Karla'
 		}
 	});
 	const [name, setName] = useState("");
@@ -62,27 +62,28 @@ export default function NewUser(props) {
 
 	return (
 		<>	
-		<ThemeProvider theme = {theme_3}>
+		<ThemeProvider theme = {theme_2}>
 			<Paper elevation={0}>
 				<form onSubmit={handleSubmit}>
-					<Grid container spacing={2} direction="row" justifyContent="center" alignItems="center">
+					<Grid container spacing={2} direction="column" justifyContent="center" alignItems="center">
 	`					<Grid item xs={8}>	
 							<Typography variant="h4" 
-								fontSize={14}
+								fontSize={20}
 								fontWeight="bold"
-								color = "#111A2D"
+								color="#111A2D"
+								align="center"
 							>
 								Enter your name
 							</Typography>
 							<TextField 
 								required
-								id="filled-basic" variant="standard" size="small"
+								id="filled-basic" variant="standard" size="large"
 								onChange={e => setName(e.target.value)}
 								margin="dense"
 							/>`
 						</Grid>
 						<Grid item xs={3}> 	
-							<Button size="small" variant="contained" type="submit" style={{ borderRadius: 35,backgroundColor:'#FFA633',fontSize: "12px"}}>
+							<Button size="small" variant="contained" type="submit" style={{ borderRadius: 35,backgroundColor:'3B5A9D',fontSize: "14px"}}>
 								Submit
 							</Button>
 						</Grid>

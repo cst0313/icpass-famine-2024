@@ -4,8 +4,9 @@ import Switch from '@mui/material/Switch';
 
 import Scanner from './Scanner';
 import Code from './Code';
-import { FormGroup, FormControlLabel } from '@mui/material';
+import { FormGroup, FormControlLabel, Typography } from '@mui/material';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
+import { fontSize } from '@mui/system';
 
 export default function QRBlock(props) {
 	const [checked, setChecked] = useState(false);
@@ -22,7 +23,11 @@ export default function QRBlock(props) {
 	}
 	const theme_3 = createTheme({
 		typography: {
-			fontFamily:'Courier+Prime'
+			fontFamily:'Courier Prime'
+		},
+		FormControlLabel: {
+			fontFamily: 'Courier Prime',
+			fontWeight: 'bold'
 		}
 	});
 	return (
@@ -30,7 +35,7 @@ export default function QRBlock(props) {
 		<ThemeProvider theme = {theme_3}>
 			<Stack spacing={2}>
 				<FormGroup>
-					<FormControlLabel control={<Switch checked={checked} onChange={handleChange}/>} label="TOGGLE SCANNER" color="#111A2D"/>
+					<FormControlLabel control={<Switch checked={checked} onChange={handleChange}/>} label={<Typography fontWeight='bold'>TOGGLE SCANNER</Typography>} color="#111A2D"/>
 				</FormGroup>
 				{block}
 			</Stack>

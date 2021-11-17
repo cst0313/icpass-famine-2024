@@ -7,13 +7,13 @@ import { ThemeProvider,createTheme } from '@mui/material/styles';
 export default function Title() {
 	const theme_3 = createTheme({
 		typography: {
-			fontFamily:'Courier+Prime'
+			fontFamily:'Courier Prime'
 		}
 	});
 	return(
 		<>
 		<ThemeProvider theme = {theme_3}>
-			<Box sx={{background:"linear-gradient(180deg, #C5C5C5 10%, #FFFFFF 80%)", p:0,m:-2}}>
+			<Box sx={{background:"linear-gradient(180deg, #F4F4F4 10%, #FFFFFF 80%)", p:0,m:-2}}>
 				<Grid container spacing={2} direction="row" >
 					<Grid item xs={12}>
 					</Grid>
