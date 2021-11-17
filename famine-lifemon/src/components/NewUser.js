@@ -9,9 +9,9 @@ import { setDoc, doc } from 'firebase/firestore';
 import { db } from '../database/firebase';
 
 export default function NewUser(props) {
-	const theme_2 = createTheme({
+	const theme_3 = createTheme({
 		typography: {
-			fontFamily:'Karla'
+			fontFamily:'Ubuntu'
 		}
 	});
 	const [name, setName] = useState("");
@@ -61,15 +61,15 @@ export default function NewUser(props) {
 
 	return (
 		<>	
-		<ThemeProvider theme = {theme_2}>
+		<ThemeProvider theme = {theme_3}>
 			<Paper elevation={0}>
 				<form onSubmit={handleSubmit}>
 					<Grid container spacing={2} direction="column" justifyContent="center" alignItems="center">
-	`					<Grid item xs={8}>	
+						<Grid item xs={8}>	
 							<Typography variant="h4" 
 								fontSize={20}
 								fontWeight="bold"
-								color="#111A2D"
+								color="#1976D2"
 								align="center"
 							>
 								Enter your name
@@ -79,7 +79,7 @@ export default function NewUser(props) {
 								id="filled-basic" variant="standard" size="large"
 								onChange={e => setName(e.target.value)}
 								margin="dense"
-							/>`
+							/>
 						</Grid>
 						<Grid item xs={3}> 	
 							<Button size="small" variant="contained" type="submit" style={{ borderRadius: 35,backgroundColor:'3B5A9D',fontSize: "14px"}}>

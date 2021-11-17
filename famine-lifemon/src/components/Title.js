@@ -7,7 +7,7 @@ import { ThemeProvider,createTheme } from '@mui/material/styles';
 export default function Title() {
 	const theme_3 = createTheme({
 		typography: {
-			fontFamily:'Courier Prime'
+			fontFamily:'Ubuntu'
 		}
 	});
 	return(

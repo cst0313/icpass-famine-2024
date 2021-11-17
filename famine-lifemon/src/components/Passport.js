@@ -15,11 +15,11 @@ export default function Passport(props) {
 	if (error) {
 		console.log(JSON.stringify(error));
 	}
-
+	console.log(loading);
 	return (
 		<>
 			<Stats snapshot={snapshot} loading={loading} id={props.id} />
-			<QRBlock snapshot={snapshot} id={props.id} />
+			<QRBlock snapshot={snapshot} lodaing={loading} id={props.id} />
 		</>
 	);
 }

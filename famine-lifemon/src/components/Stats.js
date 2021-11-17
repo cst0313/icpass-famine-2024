@@ -20,9 +20,7 @@ export default function Stats(props) {
 	return (
 		<>
 		<ThemeProvider theme = {theme_2}>
-			<Paper elevation={6} style={{ background: 'linear-gradient(45deg, #FFE078 10%, #FFC14F 100%)' }} sx={{
-				borderColor: loading ? "" : snapshot.covid ? "error.main" : ""
-			}}>
+			<Paper elevation={6} style={{ background: 'linear-gradient(45deg, #FFE078 10%, #FFC14F 100%)' }} >
 				<Grid container spacing={0.5} fontSize={16} style={{ justifyContent: "flex-end", alignItems: "center" }}>
 					<Grid item xs={12}>
 					</Grid>
@@ -78,9 +76,7 @@ export default function Stats(props) {
 					</Grid>
 				</Grid>
 			</Paper>
-			<Paper elevation={6}  style={{ background: 'linear-gradient(45deg, #4FB2AA 10%, #3F8F89 100%)' }} sx={{
-				borderColor: loading ? "" : snapshot.covid ? "error.main" : ""
-			}}>
+			<Paper elevation={6}  style={{ background: 'linear-gradient(45deg, #4FB2AA 10%, #3F8F89 100%)' }} >
 				<Grid container spacing={0.5} style={{ justifyContent: "flex-end", alignItems: "center" }}>
 					<Grid item xs={12}>
 					</Grid>

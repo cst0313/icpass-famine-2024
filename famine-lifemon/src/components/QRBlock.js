@@ -10,7 +10,6 @@ import { ThemeProvider,createTheme } from '@mui/material/styles';
 export default function QRBlock(props) {
 	const [checked, setChecked] = useState(false);
 	let block;
-
 	function handleChange() {
 		setChecked(!checked);
 	}
@@ -18,14 +17,14 @@ export default function QRBlock(props) {
 	if (checked) {
 		block = <Scanner setChecked={setChecked} snapshot={props.snapshot} id={props.id} />;
 	} else {
-		block = <Code id={props.id} />;
+		block = <Code loading={props.loading} snapshot={props.snapshot} id={props.id} />;
 	}
 	const theme_3 = createTheme({
 		typography: {
-			fontFamily:'Courier Prime'
+			fontFamily:'Ubuntu'
 		},
 		FormControlLabel: {
-			fontFamily: 'Courier Prime',
+			fontFamily: 'Ubuntu',
 			fontWeight: 'bold'
 		}
 	});
