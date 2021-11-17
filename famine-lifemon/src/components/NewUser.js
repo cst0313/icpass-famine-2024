@@ -37,7 +37,7 @@ export default function NewUser(props) {
 				health: 10,
 				happiness: 10,
 				money: 1000,
-				education: 2,
+				education: 1,
 				retake: 0,
 				married: false,
 				covid: false,
