@@ -5,7 +5,7 @@ import { doc, updateDoc, increment } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
-const COVID_PROB = 0.4;
+const COVID_PROB = 0.2;
 const TUITION_LEVELS = [0, 200, 550, 850];
 
 export default function Scanner(props) {
@@ -16,7 +16,7 @@ export default function Scanner(props) {
 	const docRef = doc(db, "users", props.id);
 
 	function updateEducation(education, passed) {
-		const tuition = (TUITION_LEVELS[education] + snapshot.retake * 50);
+		const tuition = (TUITION_LEVELS[education] + snapshot.retake * 50)s
 		if (snapshot.money < tuition) {
 			setPoorOpen(true);
 			return false;
