@@ -9,21 +9,25 @@ const COVID_PROB = 0.4;
 const TUITION_LEVELS = [0, 200, 550, 850];
 
 export default function Scanner(props) {
-	const [successOpen, setSuccessOpen] = React.useState(false);
+	const [poorOpen, setPoorOpen] = React.useState(false);
 	const [failOpen, setFailOpen] = React.useState(false);
 
 	const snapshot = props.snapshot;
 	const docRef = doc(db, "users", props.id);
 
 	function updateEducation(education, passed) {
-		const tuition = -1 * (TUITION_LEVELS[education] + snapshot.retake * 50);
-		
+		const tuition = (TUITION_LEVELS[education] + snapshot.retake * 50);
+		if (snapshot.money < tuition) {
+			setPoorOpen(true);
+			return false;
+		}
 		updateDoc(docRef, {
-			money: increment(tuition),
+			money: increment(-tuition),
 			education: passed ? education : snapshot.education,
 			retake: passed ? 0 : increment(1),
 			covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
 		});
+		return true;
 	}
 
 	function handleResult(result, error) {
@@ -33,7 +37,9 @@ export default function Scanner(props) {
 				if (data.header === 'famine-2021-lifemon') {
 					switch (data.special) {
 						case "education":
-							updateEducation(data.education, data.passed);
+							if (!updateEducation(data.education, data.passed)) {
+								return;
+							}
 							break;
 						case "jailed":
 							updateDoc(docRef, {
@@ -43,6 +49,10 @@ export default function Scanner(props) {
 							});
 							break;
 						case "cured":
+							if (snapshot.money < 500) {
+								setPoorOpen(true);
+								return;
+							}
 							updateDoc(docRef, {
 								money: increment(-500),
 								health: Math.min(15, snapshot.health + 2),
@@ -58,6 +68,10 @@ export default function Scanner(props) {
 							});
 							break;
 						default:
+							if (snapshot.money + data.money < 0) {
+								setPoorOpen(true);
+								return;
+							}
 							updateDoc(docRef, {
 								money: increment(data.money),
 								happiness: Math.min(15, Math.max(0, snapshot.happiness + data.happiness)),
@@ -65,7 +79,7 @@ export default function Scanner(props) {
 								covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
 							});
 					}
-					setSuccessOpen(true);
+					setPoorOpen(true);
 					props.setChecked(false);
 				} else {
 					setFailOpen(true);
@@ -111,21 +125,21 @@ export default function Scanner(props) {
 				</Alert>
 			</Snackbar>
 			<Snackbar
-				open={successOpen}
+				open={poorOpen}
 				autoHideDuration={2000}
 				onClose={
-					(e) => setSuccessOpen(false)
+					(e) => setPoorOpen(false)
 				}
 				TransitionComponent={Slide}
 			>
 				<Alert
-					severity='success'
+					severity='warning'
 					sx={{width: '100%'}}
 					onClose={
-						(e) => setSuccessOpen(false)
+						(e) => setPoorOpen(false)
 					}
 				>
-					Scan success
+					You cannot afford this
 				</Alert>
 			</Snackbar>
 		</>
