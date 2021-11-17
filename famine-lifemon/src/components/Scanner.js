@@ -5,7 +5,7 @@ import { doc, updateDoc, increment } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
-const COVID_PROB = 0.2;
+const COVID_PROB = 0.3;
 const TUITION_LEVELS = [0, 200, 550, 850];
 
 export default function Scanner(props) {
