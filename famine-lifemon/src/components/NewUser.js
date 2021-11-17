@@ -15,7 +15,6 @@ export default function NewUser(props) {
 		}
 	});
 	const [name, setName] = useState("");
-	const setCookie = props.setCookie;
 	
 	const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
@@ -57,7 +56,7 @@ export default function NewUser(props) {
 				cured: false
 			});
 		}
-		setCookie("id", id);
+		props.setId(id);
 	}
 
 	return (

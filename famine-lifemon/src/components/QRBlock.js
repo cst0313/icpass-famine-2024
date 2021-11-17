@@ -6,7 +6,6 @@ import Scanner from './Scanner';
 import Code from './Code';
 import { FormGroup, FormControlLabel, Typography } from '@mui/material';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
-import { fontSize } from '@mui/system';
 
 export default function QRBlock(props) {
 	const [checked, setChecked] = useState(false);
