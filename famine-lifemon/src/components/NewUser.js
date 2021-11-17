@@ -2,11 +2,18 @@ import * as React from 'react';
 import {useState} from 'react';
 import Paper from '@mui/material/Paper';
 import { Button, TextField, Typography } from '@mui/material';
+import { ThemeProvider,createTheme } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
 import { setDoc, doc } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
 export default function NewUser(props) {
+	const theme_3 = createTheme({
+		typography: {
+			fontFamily:'Courier+Prime'
+		}
+	});
 	const [name, setName] = useState("");
 	const setCookie = props.setCookie;
 	
@@ -54,20 +61,35 @@ export default function NewUser(props) {
 	}
 
 	return (
-		<Paper>
-			<form onSubmit={handleSubmit}>
-				<Typography variant="h4">
-					Enter your name
-				</Typography>
-				<TextField 
-					required
-					id="outline-required"
-					onChange={e => setName(e.target.value)}
-				/>
-				<Button variant="contained" type="submit">
-					Submit
-				</Button>
-			</form>
-		</Paper>
+		<>	
+		<ThemeProvider theme = {theme_3}>
+			<Paper elevation={0}>
+				<form onSubmit={handleSubmit}>
+					<Grid container spacing={2} direction="row" justifyContent="center" alignItems="center">
+	`					<Grid item xs={8}>	
+							<Typography variant="h4" 
+								fontSize={14}
+								fontWeight="bold"
+								color = "#111A2D"
+							>
+								Enter your name
+							</Typography>
+							<TextField 
+								required
+								id="filled-basic" variant="standard" size="small"
+								onChange={e => setName(e.target.value)}
+								margin="dense"
+							/>`
+						</Grid>
+						<Grid item xs={3}> 	
+							<Button size="small" variant="contained" type="submit" style={{ borderRadius: 35,backgroundColor:'#FFA633',fontSize: "12px"}}>
+								Submit
+							</Button>
+						</Grid>
+					</Grid>
+				</form>
+			</Paper>
+		</ThemeProvider>
+		</>
 	);
 }

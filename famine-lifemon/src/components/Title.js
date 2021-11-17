@@ -5,20 +5,20 @@ import { Box } from '@mui/system';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
 
 export default function Title() {
-	const theme_1 = createTheme({
+	const theme_3 = createTheme({
 		typography: {
-			fontFamily:'Merriweather'
+			fontFamily:'Courier+Prime'
 		}
 	});
 	return(
-		<ThemeProvider theme = {theme_1}>
-			<Box sx={{background:"linear-gradient(45deg, #3B5A9D 10%, #111A2D 100%)", p:0,m:-2}}>
+		<>
+		<ThemeProvider theme = {theme_3}>
+			<Box sx={{background:"linear-gradient(180deg, #C5C5C5 10%, #FFFFFF 80%)", p:0,m:-2}}>
 				<Grid container spacing={2} direction="row" >
 					<Grid item xs={12}>
 					</Grid>
 					<Grid item className="title" xs={5} p={0} style={{justifyContent:"flex-end", alignItems:"center"}}>
 						<Typography
-							variant="h5"
 							fontSize={22}
 							fontWeight='bold'
 							lineHeight={1}
@@ -46,7 +46,7 @@ export default function Title() {
 				</Grid>
 			</Box>
 		</ThemeProvider>	
-	
+		</>
 	);
 }
 

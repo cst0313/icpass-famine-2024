@@ -2,9 +2,9 @@ import * as React from 'react';
 
 
 import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 export default function Stats(props) {
 	const theme_2 = createTheme({
@@ -20,18 +20,11 @@ export default function Stats(props) {
 	return (
 		<>
 		<ThemeProvider theme = {theme_2}>
-			<Card variant="outlined" style={{ background: 'linear-gradient(45deg, #FFE078 10%, #FFC14F 100%)' }} sx={{
+			<Paper elevation={6} style={{ background: 'linear-gradient(45deg, #FFE078 10%, #FFC14F 100%)' }} sx={{
 				borderColor: loading ? "" : snapshot.covid ? "error.main" : ""
 			}}>
 				<Grid container spacing={0.5} fontSize={16} style={{ justifyContent: "flex-end", alignItems: "center" }}>
 					<Grid item xs={12}>
-					</Grid>
-					<Grid item xs={1}>
-					</Grid>
-					<Grid item xs={11}>
-						<Typography variant="h5" fontSize={12} component="div" spacing={0.5} color="#FFFFFF" fontWeight='medium'>
-							Personal details
-						</Typography>
 					</Grid>
 					<Grid item xs={3}>
 						<Typography variant="body2" fontWeight='medium' color="#111A2D"
@@ -84,7 +77,8 @@ export default function Stats(props) {
 					<Grid item xs={12}>
 					</Grid>
 				</Grid>
-			</Card><Card variant="outlined" style={{ background: 'linear-gradient(45deg, #4FB2AA 10%, #3F8F89 100%)' }} sx={{
+			</Paper>
+			<Paper elevation={6}  style={{ background: 'linear-gradient(45deg, #4FB2AA 10%, #3F8F89 100%)' }} sx={{
 				borderColor: loading ? "" : snapshot.covid ? "error.main" : ""
 			}}>
 				<Grid container spacing={0.5} style={{ justifyContent: "flex-end", alignItems: "center" }}>
@@ -92,7 +86,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={4}>
 						<Typography variant="body2" color="#ffffff" fontWeight='light'
-							fontSize={14}
+							fontSize={13}
 							>
 							Qualification
 						</Typography>
@@ -104,7 +98,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={4}>
 						<Typography variant="body2" color="#ffffff" fontWeight='light'
-							fontSize={14}
+							fontSize={13}
 						>	
 							Marital status
 						</Typography>
@@ -117,7 +111,7 @@ export default function Stats(props) {
 					<Grid item xs={12}>
 					</Grid>
 				</Grid>
-			</Card>
+			</Paper>
 		</ThemeProvider>
 		</>
 	);
