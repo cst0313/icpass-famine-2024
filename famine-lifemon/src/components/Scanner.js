@@ -16,7 +16,7 @@ export default function Scanner(props) {
 	const docRef = doc(db, "users", props.id);
 
 	function updateEducation(education, passed) {
-		const tuition = (TUITION_LEVELS[education] + snapshot.retake * 50)s
+		const tuition = (TUITION_LEVELS[education] + snapshot.retake * 50)
 		if (snapshot.money < tuition) {
 			setPoorOpen(true);
 			return false;
