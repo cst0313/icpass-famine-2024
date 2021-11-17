@@ -5,7 +5,7 @@ import { doc, updateDoc, increment } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
-const COVID_PROB = 0.2
+const COVID_PROB = 0.4;
 const TUITION_LEVELS = [0, 200, 550, 850];
 
 export default function Scanner(props) {
@@ -17,7 +17,7 @@ export default function Scanner(props) {
 
 	function updateEducation(education, passed) {
 		const tuition = -1 * (TUITION_LEVELS[education] + snapshot.retake * 50);
-		console.log(education);
+		
 		updateDoc(docRef, {
 			money: increment(tuition),
 			education: passed ? education : snapshot.education,
@@ -29,10 +29,8 @@ export default function Scanner(props) {
 	function handleResult(result, error) {
 		if (!!result) {
 			try {
-				console.log(props);
 				const data = JSON.parse(result.text);
 				if (data.header === 'famine-2021-lifemon') {
-					console.log(data);
 					switch (data.special) {
 						case "education":
 							updateEducation(data.education, data.passed);
@@ -40,21 +38,21 @@ export default function Scanner(props) {
 						case "jailed":
 							updateDoc(docRef, {
 								money: Math.floor(snapshot.money / 2),
-								happiness: increment(-2),
+								happiness: Math.max(0, snapshot.happiness - 2),
 								covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
 							});
 							break;
 						case "cured":
 							updateDoc(docRef, {
 								money: increment(-500),
-								health: increment(2),
+								health: Math.min(15, snapshot.health + 2),
 								covid: !snapshot.covid,
 								cured: snapshot.covid
 							});
 							break;
 						case "married":
 							updateDoc(docRef, {
-								happiness: increment(3),
+								happiness: snapshot.married ? snapshot.happiness : Math.min(15, snapshot.happiness + 3),
 								married: true,	
 								covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
 							});
@@ -62,12 +60,13 @@ export default function Scanner(props) {
 						default:
 							updateDoc(docRef, {
 								money: increment(data.money),
-								happiness: increment(data.happiness),
-								health: increment(data.health),
+								happiness: Math.min(15, Math.max(0, snapshot.happiness + data.happiness)),
+								health: Math.min(15, Math.max(0, snapshot.health + data.health)),
 								covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
 							});
 					}
 					setSuccessOpen(true);
+					props.setChecked(false);
 				} else {
 					setFailOpen(true);
 				}
