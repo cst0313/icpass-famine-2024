@@ -15,7 +15,7 @@ export default function QRBlock(props) {
 	}
 
 	if (checked) {
-		block = <Scanner snapshot={props.snapshot} id={props.id} />;
+		block = <Scanner setChecked={setChecked} snapshot={props.snapshot} id={props.id} />;
 	} else {
 		block = <Code id={props.id} />;
 	}

@@ -146,7 +146,7 @@ export default function Admin() {
 						} label="Taxed?" />
 					</AccordionDetails>
 				</Accordion>
-				<Accordion expanded={expanded === 'extra'} onChange={handleExpand('extra')}>
+				<Accordion expanded={expanded === 'special'} onChange={handleExpand('special')}>
 					<AccordionSummary expandIcon={<ExpandMoreIcon />} >
 						<Typography>
 							Special settings
@@ -181,12 +181,12 @@ export default function Admin() {
 			</Card>
 			<Code 
 				header="famine-2021-lifemon"
-				happiness={!formData.special ? formData.happiness : 0} 
-				health={!formData.special ? formData.health : 0} 
-				money={!!formData.special ? 0 : formData.taxed && formData.money >= 800 ? 800 + 0.75 * (formData.money - 800) : formData.money} 
-				special={formData.special}
-				education={formData.special === "education" ? formData.education : 0}
-				passed={formData.passed}
+				happiness={expanded === 'general' ? formData.happiness : 0} 
+				health={expanded === 'general' ? formData.health : 0} 
+				money={expanded === 'special' ? 0 : formData.taxed && formData.money >= 800 ? 800 + 0.75 * (formData.money - 800) : formData.money} 
+				special={expanded === 'special' ? formData.special : false}
+				education={expanded === 'special' && formData.special === "education" ? formData.education : 0}
+				passed={expanded === 'special' && formData.passed}
 			/>
 		</div>
 	);
