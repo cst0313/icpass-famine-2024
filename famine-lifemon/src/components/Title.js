@@ -7,12 +7,12 @@ import { ThemeProvider,createTheme } from '@mui/material/styles';
 export default function Title() {
 	const theme_1 = createTheme({
 		typography: {
-			fontFamily:'Playfair+Display'
+			fontFamily:'Merriweather'
 		}
 	});
 	return(
 		<ThemeProvider theme = {theme_1}>
-			<Box sx={{background:'#000034', p:0,m:-2}}>
+			<Box sx={{background:"linear-gradient(45deg, #3B5A9D 10%, #111A2D 100%)", p:0,m:-2}}>
 				<Grid container spacing={2} direction="row" >
 					<Grid item xs={12}>
 					</Grid>
