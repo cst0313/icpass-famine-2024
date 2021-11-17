@@ -14,6 +14,7 @@ export default function Admin() {
 		taxed : false,
 		special : false,
 		education : 0,
+		passed: false,
 	});
 	const [expanded, setExpanded] = React.useState("");
 
@@ -173,17 +174,19 @@ export default function Admin() {
 								<FormControlLabel disabled={formData.special !== "education"} value={2} control={<Radio />} label="Bachelor's" />
 								<FormControlLabel disabled={formData.special !== "education"} value={3} control={<Radio />} label="Master's" />
 							</RadioGroup>
+							<FormControlLabel disabled={formData.special !== "education"} checked={formData.passed} onChange={(e) => setFormData({...formData, passed: !formData.passed})} control={<Checkbox />} label="Passed" />
 						</FormGroup>
 					</AccordionDetails>
 				</Accordion>
 			</Card>
 			<Code 
 				header="famine-2021-lifemon"
-				happiness={formData.happiness} 
-				health={formData.health} 
-				money={formData.taxed && formData.money >= 800 ? 800 + 0.75 * (formData.money - 800) : formData.money} 
+				happiness={!formData.special ? formData.happiness : 0} 
+				health={!formData.special ? formData.health : 0} 
+				money={!!formData.special ? 0 : formData.taxed && formData.money >= 800 ? 800 + 0.75 * (formData.money - 800) : formData.money} 
 				special={formData.special}
 				education={formData.special === "education" ? formData.education : 0}
+				passed={formData.passed}
 			/>
 		</div>
 	);

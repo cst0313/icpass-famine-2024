@@ -6,7 +6,7 @@ import Scanner from './Scanner';
 import Code from './Code';
 import { FormGroup, FormControlLabel } from '@mui/material';
 
-export default function QRBlock(id) {
+export default function QRBlock(props) {
 	const [checked, setChecked] = useState(false);
 	let block;
 
@@ -15,9 +15,9 @@ export default function QRBlock(id) {
 	}
 
 	if (checked) {
-		block = <Scanner id={id.id} />;
+		block = <Scanner snapshot={props.snapshot} id={props.id} />;
 	} else {
-		block = <Code header="famine-2021-lifemon" id={id.id} />;
+		block = <Code id={props.id} />;
 	}
 
 	return (

@@ -1,28 +1,19 @@
 import * as React from 'react';
 
-import { doc } from 'firebase/firestore';
-import { useDocumentData } from 'react-firebase-hooks/firestore';
 
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
 
-import { db } from '../database/firebase';
-
-
-export default function Stats(id) {
+export default function Stats(props) {
 	const theme_2 = createTheme({
 		typography: {
 			fontFamily:'Karla'
 		}
 	});
-	const [snapshot, loading, error] = useDocumentData(
-		doc(db, "users", id.id)
-	);
-	if (error) {
-		console.log(JSON.stringify(error));
-	}
+	const snapshot = props.snapshot;
+	const loading = props.loading;
 	const happySymbol = "😄";
 	const healthSymbol = "🍎️";
 	const educationMap = ["None", "Secondary", "Bachelor's", "Master's"];

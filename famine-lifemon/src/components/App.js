@@ -7,15 +7,19 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Passport from './Passport';
 import Layout from './Layout';
 import Admin from './Admin';
+import NewUser from './NewUser';
 
 export default function App() {
 	const [cookies, setCookie] = useCookies(['id']);
 	let adminBlock;
+	let passportBlock;
 
 	if(!cookies.id) {
 		adminBlock = <Admin />;
+		passportBlock = <NewUser setCookie={setCookie}/>;
 	} else {
-		adminBlock = <Passport cookies={cookies} setCookie={setCookie} />;
+		adminBlock = <Passport id={cookies.id} />;
+		passportBlock = <Passport id={cookies.id} />;
 	}
 
 	return (
@@ -23,10 +27,10 @@ export default function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Layout />}>
-						<Route index element={<Passport cookies={cookies} setCookie={setCookie} />} />
+						<Route index element={passportBlock} />
 						<Route path="admin" element={adminBlock} />
 
-						<Route path="*" element={<Passport />} />
+						<Route path="*" element={passportBlock} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

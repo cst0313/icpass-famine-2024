@@ -32,6 +32,7 @@ export default function NewUser(props) {
 				happiness: 10,
 				money: 1000,
 				education: 2,
+				retake: 0,
 				married: false,
 				covid: false,
 				cured: false
@@ -43,6 +44,7 @@ export default function NewUser(props) {
 				happiness: 10,
 				money: 500,
 				education: 0,
+				retake: 0,
 				married: false,
 				covid: false,
 				cured: false

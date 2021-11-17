@@ -1,21 +1,25 @@
 import * as React from 'react';
 
+import { doc } from 'firebase/firestore';
+import { useDocumentData } from 'react-firebase-hooks/firestore';
+
 import Stats from './Stats';
-import NewUser from './NewUser';
 import QRBlock from './QRBlock';
 
+import { db } from '../database/firebase';
+
 export default function Passport(props) {
-	const cookies = props.cookies;
-	const setCookie = props.setCookie;
-	if (!cookies.id) {
-		return (
-			<NewUser setCookie={setCookie}/>
-		)
+	const [snapshot, loading, error] = useDocumentData(
+		doc(db, "users", props.id)
+	);
+	if (error) {
+		console.log(JSON.stringify(error));
 	}
+
 	return (
 		<>
-			<Stats id={cookies.id} />
-			<QRBlock id={cookies.id} />
+			<Stats snapshot={snapshot} loading={loading} id={props.id} />
+			<QRBlock snapshot={snapshot} id={props.id} />
 		</>
 	);
 }
