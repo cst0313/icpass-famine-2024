@@ -8,6 +8,7 @@ export default function Scanner(props) {
 
 	function handleResult(result, error) {
 		if (!!result) {
+			console.log(result.text);
 			try {
 				const header = JSON.parse(result.text).header;
 				if (header === 'famine-2021-lifemon') {
@@ -28,9 +29,10 @@ export default function Scanner(props) {
 	return (
 		<>
 			<QrReader
-			constraints={{
-				facingMode: "environment"
-			}}
+				scanDelay={2000}
+				constraints={{
+					facingMode: "environment"
+				}}
 				onResult={handleResult}
 				style={{
 					width: '100%'

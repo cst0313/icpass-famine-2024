@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox, RadioGroup, Radio, FormGroup } from '@mui/material';
+import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox, RadioGroup, Radio, FormGroup, Switch } from '@mui/material';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -12,10 +12,8 @@ export default function Admin() {
 		health : 0,
 		money : 0,
 		taxed : false,
+		special : false,
 		education : 0,
-		jailed : false,
-		cured : false,
-		married : false
 	});
 	const [expanded, setExpanded] = React.useState("");
 
@@ -25,11 +23,12 @@ export default function Admin() {
 
 	function handleHBlur () {
 		if (formData.happiness < -5) {
-			setFormData({formData, happiness: -5});
+			setFormData({...formData, happiness: -5});
 		} else if (formData.happiness > 5) {
-			setFormData({formData, happiness: 5});
+			setFormData({...formData, happiness: 5});
 		}
 	}
+
 	return (
 		<div>
 			<Card variant="outlined">
@@ -149,38 +148,31 @@ export default function Admin() {
 				<Accordion expanded={expanded === 'extra'} onChange={handleExpand('extra')}>
 					<AccordionSummary expandIcon={<ExpandMoreIcon />} >
 						<Typography>
-							Job-specific settings
+							Special settings
 						</Typography>
 					</AccordionSummary>
 
 					<AccordionDetails>
-						<Typography>
-							Education
-						</Typography>
-
-						<RadioGroup row value={formData.education} onChange={
-							(e) => setFormData({...formData, education: parseInt(e.target.value)})
-						}>
-							<FormControlLabel value={0} control={<Radio />} label="None" />
-							<FormControlLabel value={1} control={<Radio />} label="Secondary" />
-							<FormControlLabel value={2} control={<Radio />} label="Bachelor's" />
-							<FormControlLabel value={3} control={<Radio />} label="Master's" />
-						</RadioGroup>
-						
-						<Typography>
-							Other settings
-						</Typography>
-
-						<FormGroup row>
-							<FormControlLabel checked={formData.jailed} control={<Checkbox onChange={
-								(e) => setFormData({...formData, jailed: e.target.checked})
+						<FormGroup>
+							<FormControlLabel checked={formData.special === "jailed"} control={<Switch onChange={
+								(e) => formData.special === "jailed" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "jailed"})
 							} />} label="Jailed" />
-							<FormControlLabel checked={formData.cured} control={<Checkbox onChange={
-								(e) => setFormData({...formData, cured: e.target.checked})
+							<FormControlLabel checked={formData.special === "cured"} control={<Switch onChange={
+								(e) => formData.special === "cured" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "cured"})
 							} />} label="Cured COVID" />
-							<FormControlLabel checked={formData.married} control={<Checkbox onChange={
-								(e) => setFormData({...formData, married: e.target.checked})
+							<FormControlLabel checked={formData.special === "married"} control={<Switch onChange={
+								(e) => formData.special === "married" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "married"})
 							} />} label="Married" />
+							<FormControlLabel checked={formData.special === "education"} control={<Switch onChange={
+								(e) => formData.special === "education" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "education"})
+							} />} label="Education" />
+							<RadioGroup row onChange={
+								(e) => setFormData({...formData, education: parseInt(e.target.value)})
+							}>
+								<FormControlLabel disabled={formData.special !== "education"} value={1} control={<Radio />} label="Secondary" />
+								<FormControlLabel disabled={formData.special !== "education"} value={2} control={<Radio />} label="Bachelor's" />
+								<FormControlLabel disabled={formData.special !== "education"} value={3} control={<Radio />} label="Master's" />
+							</RadioGroup>
 						</FormGroup>
 					</AccordionDetails>
 				</Accordion>
@@ -189,12 +181,9 @@ export default function Admin() {
 				header="famine-2021-lifemon"
 				happiness={formData.happiness} 
 				health={formData.health} 
-				money={formData.money} 
-				taxed={formData.taxed && formData.money >= 800}
-				education={formData.education}
-				jailed={formData.jailed}
-				cured={formData.cured}
-				married={formData.married}
+				money={formData.taxed && formData.money >= 800 ? 800 + 0.75 * (formData.money - 800) : formData.money} 
+				special={formData.special}
+				education={formData.special === "education" ? formData.education : 0}
 			/>
 		</div>
 	);
