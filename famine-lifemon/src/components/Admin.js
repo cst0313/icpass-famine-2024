@@ -59,7 +59,7 @@ export default function Admin() {
 									value={formData.happiness}
 									size="small"
 									onChange={
-										(e) => setFormData({...formData, happiness: e.target.value})
+										(e) => setFormData({...formData, happiness: parseInt(e.target.value)})
 									}
 									onBlur={handleHBlur}
 									inputProps={{
@@ -93,7 +93,7 @@ export default function Admin() {
 									value={formData.health}
 									size="small"
 									onChange={
-										(e) => setFormData({...formData, health: e.target.value})
+										(e) => setFormData({...formData, health: parseInt(e.target.value)})
 									}
 									onBlur={handleHBlur}
 									inputProps={{
@@ -127,7 +127,7 @@ export default function Admin() {
 									value={formData.money}
 									size="small"
 									onChange={
-										(e) => setFormData({...formData, money: e.target.value})
+										(e) => setFormData({...formData, money: parseInt(e.target.value)})
 									}
 									onBlur={handleHBlur}
 									inputProps={{
