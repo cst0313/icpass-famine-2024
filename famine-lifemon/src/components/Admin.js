@@ -22,13 +22,19 @@ export default function Admin() {
 		setExpanded(isExpanded ? panel : "");
 	}
 
-	function handleHBlur () {
-		if (formData.happiness < -5) {
-			setFormData({...formData, happiness: -5});
-		} else if (formData.happiness > 5) {
-			setFormData({...formData, happiness: 5});
-		}
+	function handleHappinessBlur () {
+		setFormData({...formData, happiness: Math.min(5, Math.max(-5, formData.happiness))});
 	}
+
+	function handleHealthBlur () {
+		setFormData({...formData, health: Math.min(5, Math.max(-5, formData.health))});
+	}
+
+	function handleMoneyBlur () {
+		const validMoney = Math.min(1500, Math.max(-1500, formData.money));
+		setFormData({...formData, money: validMoney - (validMoney % 100)});
+	}
+
 
 	return (
 		<div>
@@ -61,7 +67,7 @@ export default function Admin() {
 									onChange={
 										(e) => setFormData({...formData, happiness: e.target.value})
 									}
-									onBlur={handleHBlur}
+									onBlur={handleHappinessBlur}
 									inputProps={{
 										step: 1,
 										min: -5,
@@ -95,7 +101,7 @@ export default function Admin() {
 									onChange={
 										(e) => setFormData({...formData, health: e.target.value})
 									}
-									onBlur={handleHBlur}
+									onBlur={handleHealthBlur}
 									inputProps={{
 										step: 1,
 										min: -5,
@@ -129,7 +135,7 @@ export default function Admin() {
 									onChange={
 										(e) => setFormData({...formData, money: e.target.value})
 									}
-									onBlur={handleHBlur}
+									onBlur={handleMoneyBlur}
 									inputProps={{
 										step: 100,
 										min: -1500,
