@@ -59,7 +59,7 @@ export default function Admin() {
 									value={formData.happiness}
 									size="small"
 									onChange={
-										(e) => setFormData({...formData, happiness: parseInt(e.target.value)})
+										(e) => setFormData({...formData, happiness: e.target.value})
 									}
 									onBlur={handleHBlur}
 									inputProps={{
@@ -93,7 +93,7 @@ export default function Admin() {
 									value={formData.health}
 									size="small"
 									onChange={
-										(e) => setFormData({...formData, health: parseInt(e.target.value)})
+										(e) => setFormData({...formData, health: e.target.value})
 									}
 									onBlur={handleHBlur}
 									inputProps={{
@@ -127,7 +127,7 @@ export default function Admin() {
 									value={formData.money}
 									size="small"
 									onChange={
-										(e) => setFormData({...formData, money: parseInt(e.target.value)})
+										(e) => setFormData({...formData, money: e.target.value})
 									}
 									onBlur={handleHBlur}
 									inputProps={{
@@ -181,9 +181,9 @@ export default function Admin() {
 			</Card>
 			<Code 
 				header="famine-2021-lifemon"
-				happiness={expanded === 'general' ? formData.happiness : 0} 
-				health={expanded === 'general' ? formData.health : 0} 
-				money={expanded === 'special' ? 0 : formData.taxed && formData.money >= 800 ? 800 + 0.75 * (formData.money - 800) : formData.money} 
+				happiness={expanded === 'general' ? parseInt(formData.happiness) : 0} 
+				health={expanded === 'general' ? parseInt(formData.health) : 0} 
+				money={expanded === 'special' ? 0 : formData.taxed && parseInt(formData.money) >= 800 ? 800 + 0.75 * (parseInt(formData.money) - 800) : parseInt(formData.money)} 
 				special={expanded === 'special' ? formData.special : false}
 				education={expanded === 'special' && formData.special === "education" ? formData.education : 0}
 				passed={expanded === 'special' && formData.passed}
