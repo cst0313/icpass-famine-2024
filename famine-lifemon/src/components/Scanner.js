@@ -5,7 +5,6 @@ import { doc, updateDoc, increment } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
-const COVID_PROB = 0.3;
 const TUITION_LEVELS = [0, 200, 550, 850];
 
 export default function Scanner(props) {
@@ -24,7 +23,6 @@ export default function Scanner(props) {
 		updateDoc(docRef, {
 			money: increment(-tuition),
 			education: passed ? education : snapshot.education,
-			covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
 		});
 		return true;
 	}
@@ -44,26 +42,12 @@ export default function Scanner(props) {
 							updateDoc(docRef, {
 								money: Math.floor(snapshot.money / 2),
 								happiness: Math.max(0, snapshot.happiness - 2),
-								covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
-							});
-							break;
-						case "cured":
-							if (snapshot.money < 500) {
-								setPoorOpen(true);
-								return;
-							}
-							updateDoc(docRef, {
-								money: increment(-500),
-								health: Math.min(15, snapshot.health + 2),
-								covid: !snapshot.covid,
-								cured: snapshot.covid
 							});
 							break;
 						case "married":
 							updateDoc(docRef, {
 								happiness: snapshot.married ? snapshot.happiness : Math.min(15, snapshot.happiness + 3),
-								married: true,	
-								covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
+								married: true,
 							});
 							break;
 						default:
@@ -75,7 +59,6 @@ export default function Scanner(props) {
 								money: increment(data.money),
 								happiness: Math.min(15, Math.max(0, snapshot.happiness + data.happiness)),
 								health: Math.min(15, Math.max(0, snapshot.health + data.health)),
-								covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
 							});
 					}
 					setPoorOpen(true);

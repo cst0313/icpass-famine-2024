@@ -38,6 +38,7 @@ export default function NewUser(props) {
 			money: 1000,
 			education: 0,
 			charity: 0,
+			showCharity: false,
 			married: false,
 		});
 		props.setId(id);
