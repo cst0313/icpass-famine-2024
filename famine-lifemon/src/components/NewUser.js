@@ -31,31 +31,15 @@ export default function NewUser(props) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const id = generateString(20);
-		if (Math.random() < 0.2) {
-			setDoc(doc(db, "users", id), {
-				name: name,
-				health: 10,
-				happiness: 10,
-				money: 1000,
-				education: 1,
-				retake: 0,
-				married: false,
-				covid: false,
-				cured: false
-			});
-		} else {
-			setDoc(doc(db, "users", id), {
-				name: name,
-				health: 10,
-				happiness: 10,
-				money: 500,
-				education: 0,
-				retake: 0,
-				married: false,
-				covid: false,
-				cured: false
-			});
-		}
+		setDoc(doc(db, "users", id), {
+			name: name,
+			food: 10,
+			happiness: 10,
+			money: 1000,
+			education: 0,
+			charity: 0,
+			married: false,
+		});
 		props.setId(id);
 	}
 

@@ -15,8 +15,8 @@ export default function Stats(props) {
 	const snapshot = props.snapshot;
 	const loading = props.loading;
 	const happySymbol = "😄";
-	const healthSymbol = "🍎️";
-	const educationMap = ["None", "Secondary", "Bachelor's", "Master's"];
+	const foodSymbol = "🍎️";
+	const educationMap = ["Primary", "Secondary", "University", "Graduate"];
 	return (
 		<>
 		<ThemeProvider theme = {theme_2}>
@@ -57,7 +57,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2">
-							{loading ? "Loading..." : healthSymbol.repeat(snapshot.health)}
+							{loading ? "Loading..." : foodSymbol.repeat(snapshot.food)}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>

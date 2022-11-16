@@ -24,7 +24,6 @@ export default function Scanner(props) {
 		updateDoc(docRef, {
 			money: increment(-tuition),
 			education: passed ? education : snapshot.education,
-			retake: passed ? 0 : increment(1),
 			covid: !snapshot.cured && (snapshot.covid || (Math.random() < COVID_PROB))
 		});
 		return true;
