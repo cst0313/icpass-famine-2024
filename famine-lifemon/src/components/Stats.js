@@ -14,10 +14,9 @@ export default function Stats(props) {
 	});
 	const snapshot = props.snapshot;
 	const loading = props.loading;
-	const showCharity = snapshot.showCharity? 'block' : 'none'
 	const happySymbol = "😄";
 	const foodSymbol = "🍎️";
-	const charitySymbol = "💝";
+	const charitySymbol = "🔥";
 	const educationMap = ["Primary", "Secondary", "University", "Graduate"];
 	return (
 		<>
@@ -54,7 +53,7 @@ export default function Stats(props) {
 						<Typography variant="body2"fontWeight='medium' color="#111A2D"
 							fontSize={13}
 							>
-							Health
+							Food
 						</Typography>
 					</Grid>
 					<Grid item xs={8}>
@@ -76,13 +75,13 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={3}>
 						<Typography variant="body2" fontWeight='medium' color="#111A2D"
-							fontSize={13} display={showCharity}
+							fontSize={13} display={loading ? 'none' : snapshot.showcharity ? 'display' : 'none'}
 						>
 							Charity
 						</Typography>
 					</Grid>
 					<Grid item xs={8}>
-						<Typography variant="body2" display={showCharity}>
+						<Typography variant="body2" display={loading ? 'none' : snapshot.showcharity ? 'display' : 'none'}>
 							{loading ? "Loading..." : charitySymbol.repeat(snapshot.charity)}
 						</Typography>
 					</Grid>

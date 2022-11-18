@@ -31,15 +31,26 @@ export default function NewUser(props) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const id = generateString(20);
+
+		/* Randomize Stats*/
+		const educations = [
+			{education: 0, pct: 12}, // Primary    60%
+			{education: 1, pct: 7},  // Secondary  30%
+			{education: 2, pct: 1},  // University 5%
+			{education: 3, pct: 0}   // Graduate   0%
+		];
+		
+		const expanded = educations.flatMap(education => Array(education.pct).fill(education));
+		const randomizedEducation = expanded[Math.floor(Math.random() * expanded.length)];
 		setDoc(doc(db, "users", id), {
 			name: name,
 			food: 10,
 			happiness: 10,
 			money: 1000,
-			education: 0,
+			education: randomizedEducation,
 			charity: 0,
-			showCharity: false,
-			married: false,
+			showcharity: false,
+			married: false
 		});
 		props.setId(id);
 	}
