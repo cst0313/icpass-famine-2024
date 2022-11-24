@@ -5,7 +5,7 @@ import { doc, updateDoc, increment } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
-const TUITION_LEVELS = [0, 200, 550, 850];
+const TUITION_LEVELS = [0, 0, 0, 0];
 
 export default function Scanner(props) {
 	const [poorOpen, setPoorOpen] = React.useState(false);
