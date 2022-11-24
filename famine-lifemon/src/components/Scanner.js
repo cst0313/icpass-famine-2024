@@ -15,14 +15,14 @@ export default function Scanner(props) {
 	const docRef = doc(db, "users", props.id);
 
 	function updateEducation(education, passed) {
-		const tuition = (TUITION_LEVELS[education] + snapshot.retake * 50)
+		const tuition = (TUITION_LEVELS[education])
 		if (snapshot.money < tuition) {
 			setPoorOpen(true);
 			return false;
 		}
 		updateDoc(docRef, {
 			money: increment(-tuition),
-			education: passed ? education : snapshot.education,
+			education: passed ? education > snapshot.education ? education : snapshot.education : snapshot.education,
 		});
 		return true;
 	}
@@ -42,12 +42,35 @@ export default function Scanner(props) {
 							updateDoc(docRef, {
 								money: Math.floor(snapshot.money / 2),
 								happiness: Math.max(0, snapshot.happiness - 2),
+								showcharity: false,
 							});
 							break;
 						case "married":
 							updateDoc(docRef, {
-								happiness: snapshot.married ? snapshot.happiness : Math.min(15, snapshot.happiness + 3),
+								happiness: snapshot.married ? snapshot.happiness : (snapshot.happiness + 3),
 								married: true,
+								showcharity: false,
+							});
+							break;
+						case "donor":
+							updateDoc(docRef, {
+								charity: snapshot.charity + 5,
+								food: snapshot.food - 1,
+								happiness: snapshot.happiness + 5,
+								showcharity: false,
+							});
+							break;
+						case "recipient":
+							updateDoc(docRef, {
+								charity: snapshot.charity + 2,
+								food: snapshot.food + 1,
+								happiness: snapshot.happiness + 3,
+								showcharity: false,
+							});
+							break;
+						case "showCharity":
+							updateDoc(docRef, {
+								showcharity: true,
 							});
 							break;
 						default:
@@ -57,8 +80,8 @@ export default function Scanner(props) {
 							}
 							updateDoc(docRef, {
 								money: increment(data.money),
-								happiness: Math.min(15, Math.max(0, snapshot.happiness + data.happiness)),
-								health: Math.min(15, Math.max(0, snapshot.health + data.health)),
+								happiness: Math.max(0, snapshot.happiness + data.happiness),
+								food: Math.max(0, snapshot.food + data.food),
 							});
 					}
 					setPoorOpen(true);

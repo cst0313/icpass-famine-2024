@@ -41,7 +41,7 @@ export default function NewUser(props) {
 		];
 		
 		const expanded = educations.flatMap(education => Array(education.pct).fill(education));
-		const randomizedEducation = expanded[Math.floor(Math.random() * expanded.length)];
+		const randomizedEducation = expanded[Math.floor(Math.random() * expanded.length)].education;
 		setDoc(doc(db, "users", id), {
 			name: name,
 			food: 10,
@@ -50,7 +50,8 @@ export default function NewUser(props) {
 			education: randomizedEducation,
 			charity: 0,
 			showcharity: false,
-			married: false
+			married: false,
+			jailed: false
 		});
 		props.setId(id);
 	}

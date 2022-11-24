@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import Code from './Code';
 
-export default function Admin() {
+export default function AdminDB() {
 	const [formData, setFormData] = React.useState({
 		food: 0,
 		happiness: 0,
@@ -169,6 +169,9 @@ export default function Admin() {
 							<FormControlLabel checked={formData.special === "recipient"} control={<Switch onChange={
 								(e) => formData.special === "recipient" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "recipient"})
 							} />} label="Recipient" />
+							<FormControlLabel checked={formData.special === "showCharity"} control={<Switch onChange={
+								(e) => formData.special === "showCharity" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "showCharity"})
+							} />} label="show" />
 							<FormControlLabel checked={formData.special === "education"} control={<Switch onChange={
 								(e) => formData.special === "education" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "education"})
 							} />} label="Education" />

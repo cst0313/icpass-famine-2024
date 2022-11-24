@@ -7,6 +7,7 @@ import Passport from './Passport';
 import Layout from './Layout';
 import Admin from './Admin';
 import NewUser from './NewUser';
+import AdminDB from './AdminDB';
 
 // Hook
 function useLocalStorage(key, initialValue) {
@@ -44,16 +45,19 @@ function useLocalStorage(key, initialValue) {
 }
 
 export default function App() {
-	let adminBlock;
+  let adminBlock;
+  let adminDBBlock;
 	let passportBlock;
 
 	const [id, setId] = useLocalStorage("id", null);
 
 	if(!localStorage.getItem("id")) {
-		adminBlock = <Admin />;
+    adminBlock = <Admin />;
+    adminDBBlock = <AdminDB />;
 		passportBlock = <NewUser setId={setId} />;
 	} else {
-		adminBlock = <Passport id={id} />;
+    adminBlock = <Passport id={id} />;
+    adminDBBlock = <Passport id={id}/>;
 		passportBlock = <Passport id={id} />;
 	}
 
@@ -62,7 +66,8 @@ export default function App() {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={passportBlock} />
-					<Route path="admin" element={adminBlock} />
+          <Route path="admin" element={adminBlock} />
+          <Route path="adminfamine24" element={adminDBBlock} />
 
 					<Route path="*" element={passportBlock} />
 				</Route>
