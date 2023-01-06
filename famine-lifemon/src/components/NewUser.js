@@ -39,15 +39,31 @@ export default function NewUser(props) {
 			{education: 2, pct: 1},  // University 5%
 			{education: 3, pct: 0}   // Graduate   0%
 		];
+
+		const moneyList = [
+			{money: 100, pct: 14},
+			{money: 200, pct: 5},
+			{money: 500, pct: 1},
+		];
+
+		const foods = [
+			{food: 2, pct: 7},
+			{food: 6, pct: 10},
+			{food: 10, pct: 3},
+		];
 		
-		const expanded = educations.flatMap(education => Array(education.pct).fill(education));
-		const randomizedEducation = expanded[Math.floor(Math.random() * expanded.length)].education;
+		function handleRandom(table) {
+			const expanded = table.flatMap(entry => Array(entry.pct).fill(entry));
+			return expanded[Math.floor(Math.random() * expanded.length)];
+		}
+	
+
 		setDoc(doc(db, "users", id), {
 			name: name,
-			food: 10,
-			happiness: 10,
-			money: 1000,
-			education: randomizedEducation,
+			food: handleRandom(foods).food,
+			happiness: 5,
+			money: handleRandom(moneyList).money,
+			education: handleRandom(educations).education,
 			charity: 0,
 			showcharity: false,
 			married: false,

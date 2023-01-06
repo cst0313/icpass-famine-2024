@@ -32,7 +32,7 @@ export default function Admin() {
 	}
 
 	function handleMoneyBlur () {
-		const validMoney = Math.min(1500, Math.max(-1500, formData.money));
+		const validMoney = Math.min(2000, Math.max(-2000, formData.money));
 		setFormData({...formData, money: validMoney - (validMoney % 100)});
 	}
 
@@ -123,9 +123,9 @@ export default function Admin() {
 									onChange={
 										(e) => setFormData({...formData, money: e.target.value})
 									}
-									step={100}
-									min={-1500}
-									max={1500}
+									step={10}
+									min={-2000}
+									max={2000}
 								/>
 							</Grid>
 							<Grid item xs={2}>
@@ -139,8 +139,8 @@ export default function Admin() {
 									onBlur={handleMoneyBlur}
 									inputProps={{
 										step: 100,
-										min: -1500,
-										max: 1500,
+										min: -2000,
+										max: 2000,
 										type: 'number',
 									}}
 								/>

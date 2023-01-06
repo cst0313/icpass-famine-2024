@@ -23,6 +23,7 @@ export default function Scanner(props) {
 		updateDoc(docRef, {
 			money: increment(-tuition),
 			education: passed ? education > snapshot.education ? education : snapshot.education : snapshot.education,
+			showcharity: false,
 		});
 		return true;
 	}
@@ -47,18 +48,20 @@ export default function Scanner(props) {
 							break;
 						case "married":
 							updateDoc(docRef, {
-								happiness: snapshot.married ? snapshot.happiness : (snapshot.happiness + 3),
+								happiness: snapshot.married ? snapshot.happiness : (snapshot.happiness + 6),
 								married: true,
 								showcharity: false,
 							});
 							break;
 						case "donor":
-							updateDoc(docRef, {
-								charity: snapshot.charity + 5,
-								food: snapshot.food - 1,
-								happiness: snapshot.happiness + 5,
-								showcharity: false,
-							});
+							if (snapshot.food > 0) {
+								updateDoc(docRef, {
+									charity: snapshot.charity + 5,
+									food: Math.max(0, snapshot.food - 1),
+									happiness: snapshot.happiness + 5,
+									showcharity: false,
+								});
+							}
 							break;
 						case "recipient":
 							updateDoc(docRef, {
