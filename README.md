@@ -1,7 +1,7 @@
 # ICPASS-Famine24-2022
 ## Background
-This app is used in a real life event called Famine24 held in London, where the app was used
-record and update the stats of each person in one of the game in the event. Participant would complete
+This app is used in a real life fundraising event called Famine24 held in London, where the 
+app was used to record and update the stats of each participant. Participants would complete
 tasks to improve their stats to win the game.
 
 ## Contributors
