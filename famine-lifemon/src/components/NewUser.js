@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {useState} from 'react';
-import Paper from '@mui/material/Paper';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, Paper, TextField, Typography } from '@mui/material';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { setDoc, doc } from 'firebase/firestore';

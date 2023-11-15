@@ -8,3 +8,4 @@ tasks to improve their stats to win the game.
 [N00bAdrian](https://github.com/N00bAdrian) - Created the app for the Famine24 2021 <br />
 [Brigidw](https://github.com/Brigidw) - Contributed on the UI/UX of the app <br />
 [StevenChenWaiHo](https://github.com/StevenChenWaiHo) - Modified the app for Famine24 2022 (Added secret stats and more) <br />
+[henrytsyu](https://github.com/henrytsyu) - Improved UX for admins and anti-cheating functionality for Famine24 2023 <br />
