@@ -29,7 +29,7 @@ export default function Title() {
 					<Grid item xs={2} align="center">
 						<img
 							className="logo"
-							src="passlogo.png"
+							src="/passlogo.png"
 							alt="ICPASS logo"
 							align="middle"/>
 					</Grid>
