@@ -188,7 +188,7 @@ export default function AdminDB() {
 				</Accordion>
 			</Card>
 			<Code 
-				header="famine-2021-lifemon"
+				header="famine-2023-lifemon"
 				happiness={expanded === 'general' ? parseInt(formData.happiness) : 0} 
 				food={expanded === 'general' ? parseInt(formData.food) : 0} 
 				money={expanded === 'special' ? 0 : formData.taxed && parseInt(formData.money) >= 800 ? 800 + 0.75 * (parseInt(formData.money) - 800) : parseInt(formData.money)} 

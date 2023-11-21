@@ -39,7 +39,7 @@ export default function Scanner(props) {
 					setFailOpen(true);
 					return;
 				}
-				if (data.header === 'famine-2021-lifemon') {
+				if (data.header === 'famine-2023-lifemon') {
 					switch (data.special) {
 						case "education":
 							if (!updateEducation(data.education, data.passed)) {
