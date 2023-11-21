@@ -83,7 +83,7 @@ export default function NewUser(props) {
             <Grid item xs={8}>
               <TextField 
                 required
-                id="filled-basic"
+                id="name-textfield"
                 variant="outlined"
                 sx={{width: '20em'}}
                 size="large"
@@ -94,9 +94,9 @@ export default function NewUser(props) {
               />
             </Grid>
             <Grid item xs={8}>
-            <TextField
+              <TextField
                 required
-                id="demo-simple-select"
+                id="group-select"
                 size='large'
                 value={group}
                 label="Group"
@@ -106,16 +106,11 @@ export default function NewUser(props) {
                 fullWidth
                 margin='dense'
               >
-                <MenuItem value={1}>Group 1</MenuItem>
-                <MenuItem value={2}>Group 2</MenuItem>
-                <MenuItem value={3}>Group 3</MenuItem>
-                <MenuItem value={4}>Group 4</MenuItem>
-                <MenuItem value={5}>Group 5</MenuItem>
-                <MenuItem value={6}>Group 6</MenuItem>
-                <MenuItem value={7}>Group 7</MenuItem>
-                <MenuItem value={8}>Group 8</MenuItem>
-                <MenuItem value={9}>Group 9</MenuItem>
-                <MenuItem value={10}>Group 10</MenuItem>
+                {
+                  Array.from({length: 10}, (_, i) => i + 1).map((i) => 
+                    <MenuItem id={i} value={i}>Group {i}</MenuItem>
+                  )
+                }
               </TextField>
             </Grid>
             <Grid item xs={8}>
