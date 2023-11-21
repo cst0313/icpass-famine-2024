@@ -108,7 +108,7 @@ export default function NewUser(props) {
               >
                 {
                   Array.from({length: 10}, (_, i) => i + 1).map((i) => 
-                    <MenuItem id={i} value={i}>Group {i}</MenuItem>
+                    <MenuItem key={i} value={i}>Group {i}</MenuItem>
                   )
                 }
               </TextField>
