@@ -77,19 +77,19 @@ const NewAdmin = () => {
         }
       </TextField>
       {
-        (location === 0) ? <BobaShop setFormData={setFormData}/> :
-        (location === 1) ? <Church setFormData={setFormData}/> :
-        (location === 2) ? <CommunityCentre /> :
-        (location === 3) ? <Corporation /> :
-        (location === 4) ? <Factory /> :
-        (location === 5) ? <Farm /> :
-        (location === 6) ? <FoodBank /> :
-        (location === 7) ? <Hospital /> :
-        (location === 8) ? <ICEntertainment /> :
-        (location === 9) ? <Lab /> :
-        (location === 10) ? <PoliceStationPrison /> :
-        (location === 11) ? <School /> :
-        (location === 12) ? <YellowGambleDrug /> :
+        (location === 0) ? <BobaShop setFormData={setFormData} /> :
+        (location === 1) ? <Church setFormData={setFormData} /> :
+        (location === 2) ? <CommunityCentre setFormData={setFormData} /> :
+        (location === 3) ? <Corporation setFormData={setFormData} /> :
+        (location === 4) ? <Factory setFormData={setFormData} /> :
+        (location === 5) ? <Farm setFormData={setFormData} /> :
+        (location === 6) ? <FoodBank setFormData={setFormData} /> :
+        (location === 7) ? <Hospital setFormData={setFormData} /> :
+        (location === 8) ? <ICEntertainment setFormData={setFormData} /> :
+        (location === 9) ? <Lab setFormData={setFormData} /> :
+        (location === 10) ? <PoliceStationPrison setFormData={setFormData} /> :
+        (location === 11) ? <School setFormData={setFormData} /> :
+        (location === 12) ? <YellowGambleDrug setFormData={setFormData} /> :
         <></>
       }
       <Code 
