@@ -59,7 +59,7 @@ export default function NewUser(props) {
 
     setDoc(doc(db, "users", id), {
       name: name,
-      groupNumber: groupNumber,
+      group: group,
       food: handleRandom(foods).food,
       happiness: 5,
       money: handleRandom(moneyList).money,
@@ -72,7 +72,7 @@ export default function NewUser(props) {
     props.setId(id);
   }
 
-  const [groupNumber, setGroupNumber] = React.useState('');
+  const [group, setGroup] = React.useState('');
 
   return (
     <>	
@@ -98,9 +98,9 @@ export default function NewUser(props) {
                 required
                 id="demo-simple-select"
                 size='large'
-                value={groupNumber}
-                label="Group Number"
-                onChange={e => { setGroupNumber(e.target.value) }}
+                value={group}
+                label="Group"
+                onChange={e => { setGroup(e.target.value) }}
                 sx={{width: '20em'}}
                 select
                 fullWidth

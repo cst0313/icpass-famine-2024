@@ -42,12 +42,12 @@ export default function Stats(props) {
 						<Typography variant="body2" fontWeight='medium' color="#111A2D"
 							fontSize={13}
 							>
-							Group number
+							Group
 						</Typography>
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2" fontWeight='bold' color="#111A2D" fontSize={14} style={{textTransform: 'uppercase'}} >
-							{loading ? "Loading..." : "Group " + snapshot.groupNumber}
+							{loading ? "Loading..." : "Group " + snapshot.group}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
