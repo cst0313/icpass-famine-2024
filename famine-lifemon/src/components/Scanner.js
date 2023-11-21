@@ -27,11 +27,17 @@ export default function Scanner(props) {
 		});
 		return true;
 	}
+	
+	const validTimestamp = (timestamp) => 
+		Math.abs(Date.now() - timestamp) < 10000
 
 	function handleResult(result, error) {
 		if (!!result) {
 			try {
 				const data = JSON.parse(result.text);
+				if (!validTimestamp(data.timestamp)) {
+					return;
+				}
 				if (data.header === 'famine-2021-lifemon') {
 					switch (data.special) {
 						case "education":

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox, RadioGroup, Radio, FormGroup, Switch } from '@mui/material';
 
@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Code from './Code';
 
 export default function Admin() {
-	const [formData, setFormData] = React.useState({
+	const [formData, setFormData] = useState({
 		food: 0,
 		happiness: 0,
 		money: 0,
@@ -17,7 +17,7 @@ export default function Admin() {
 		married: false,
 		jailed: false
 	});
-	const [expanded, setExpanded] = React.useState("");
+	const [expanded, setExpanded] = useState("");
 
 	const handleExpand = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : "");
@@ -36,6 +36,15 @@ export default function Admin() {
 		setFormData({...formData, money: validMoney - (validMoney % 100)});
 	}
 
+	const [timestamp, setTimestamp] = useState(Date.now());
+	const updateTimestamp = () => {
+		setTimestamp(Date.now());
+	}
+
+	useEffect(() => {
+    const intervalId = setInterval(updateTimestamp, 2000);
+    return () => clearInterval(intervalId);
+  }, []);
 
 	return (
 		<div>
@@ -192,6 +201,7 @@ export default function Admin() {
 				special={expanded === 'special' ? formData.special : false}
 				education={expanded === 'special' && formData.special === "education" ? formData.education : 0}
 				passed={expanded === 'special' && formData.passed}
+				timestamp={timestamp}
 			/>
 		</div>
 	);
