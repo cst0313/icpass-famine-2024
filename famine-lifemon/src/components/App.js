@@ -7,7 +7,7 @@ import Passport from './Passport';
 import Layout from './Layout';
 import Admin from './Admin';
 import NewUser from './NewUser';
-import AdminDB from './AdminDB';
+import NewAdmin from './NewAdmin';
 
 // Hook
 function useLocalStorage(key, initialValue) {
@@ -45,31 +45,25 @@ function useLocalStorage(key, initialValue) {
 }
 
 export default function App() {
-  let adminBlock;
-  let adminDBBlock;
-	let passportBlock;
-
 	const [id, setId] = useLocalStorage("id", null);
-
-	if(!localStorage.getItem("id")) {
-    adminBlock = <Admin />;
-    adminDBBlock = <AdminDB />;
-		passportBlock = <NewUser setId={setId} />;
-	} else {
-    adminBlock = <Passport id={id} />;
-    adminDBBlock = <Passport id={id}/>;
-		passportBlock = <Passport id={id} />;
-	}
 
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route index element={passportBlock} />
-          <Route path="admin" element={adminBlock} />
-          <Route path="adminfamine24" element={adminDBBlock} />
-
-					<Route path="*" element={passportBlock} />
+          {
+            (localStorage.getItem("id")) ?
+              <>
+                <Route index element={<Passport id={id} />} />
+                <Route path='*' element={<Passport id={id} />} />
+              </> :
+              <>
+                <Route index element={<NewUser setId={setId} />} />
+                <Route path="admin" element={<Admin />} />
+                <Route path="newadmin" element={<NewAdmin />} />
+                <Route path='*' element={<NewUser setId={setId} />} />
+              </>
+          }
 				</Route>
 			</Routes>
 		</BrowserRouter>
