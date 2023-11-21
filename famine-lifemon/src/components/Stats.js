@@ -35,7 +35,19 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2" fontWeight='bold' color="#111A2D" fontSize={14} style={{textTransform: 'uppercase'}} >
-								{loading ? "Loading..." : snapshot.jailed ? jailedSymbol : ""}{loading ? "Loading..." : snapshot.name}
+							{loading ? "Loading..." : snapshot.jailed ? jailedSymbol : ""}{loading ? "Loading..." : snapshot.name}
+						</Typography>
+					</Grid>
+					<Grid item xs={3}>
+						<Typography variant="body2" fontWeight='medium' color="#111A2D"
+							fontSize={13}
+							>
+							Group number
+						</Typography>
+					</Grid>
+					<Grid item xs={8}>
+						<Typography variant="body2" fontWeight='bold' color="#111A2D" fontSize={14} style={{textTransform: 'uppercase'}} >
+							{loading ? "Loading..." : "Group " + snapshot.groupNumber}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
