@@ -8,10 +8,10 @@ const BobaShop = ({ setFormData }) => {
   return (
     <TextField
       required
-      id="details-select"
+      id="result-select"
       size='large'
       value={result}
-      label="Details"
+      label="Result"
       onChange={e => { 
         const value = e.target.value;
         setResult(value);
@@ -31,7 +31,7 @@ const BobaShop = ({ setFormData }) => {
       fullWidth
       margin='dense'
     >
-      <MenuItem key={0} value={true}>Success</MenuItem>
+      <MenuItem key={0} value={true}>Successful</MenuItem>
       <MenuItem key={1} value={false}>Fail</MenuItem>
     </TextField>
   )

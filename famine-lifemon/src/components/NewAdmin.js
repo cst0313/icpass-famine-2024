@@ -56,6 +56,30 @@ const NewAdmin = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  const prices = [-50, -75, -100, -125, -150];
+
+  const handleLocationChange = e => {
+    const value = e.target.value;
+    setLocation(value);
+    setFormData({
+      food: value === 6 ? 1 : value === 1 ? -3 : -1,
+      happiness: value === 6 ? 1 : value === 1 ? 6 : -1,
+      money: (
+        value === 6 ? prices[Math.floor(Math.random()*prices.length)] :
+        value === 4 || value === 9 || value === 7 ? 30 :
+        value === 5 || value === 10 ? 150 :
+        value === 8 ? 120 :
+        value === 3 ? 250 :
+        value === 0 ? 100 : 0
+      ),
+      education: 0,
+      charity: 0,
+      showcharity: false,
+      married: false,
+      jailed: false
+    });
+  }
+
   return (
     <>
       <TextField
@@ -64,7 +88,7 @@ const NewAdmin = () => {
         size='large'
         value={location}
         label="Location"
-        onChange={e => { setLocation(e.target.value); }}
+        onChange={handleLocationChange}
         sx={{width: '20em'}}
         select
         fullWidth
@@ -94,9 +118,9 @@ const NewAdmin = () => {
       }
       <Code 
         header="famine-2023-lifemon"
-        happiness={parseInt(formData.happiness)} 
-        food={parseInt(formData.food)} 
-        money={parseInt(formData.money)} 
+        happiness={formData.happiness} 
+        food={formData.food} 
+        money={formData.money} 
         special={formData.special}
         education={formData.education}
         passed={formData.passed}

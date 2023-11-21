@@ -3,18 +3,18 @@ import React, { useState } from 'react'
 import { TextField, MenuItem } from '@mui/material';
 
 const CommunityCentre = ({ setFormData }) => {
-  const [result, setResult] = useState(true);
+  const [type, setType] = useState(true);
 
   return (
     <TextField
       required
-      id="details-select"
+      id="type-select"
       size='large'
-      value={result}
-      label="Details"
+      value={type}
+      label="Type"
       onChange={e => {
         const value = e.target.value;
-        setResult(value);
+        setType(value);
         setFormData({
           food: value ? -1 : 0,
           happiness: 5,
