@@ -36,6 +36,7 @@ export default function Scanner(props) {
 			try {
 				const data = JSON.parse(result.text);
 				if (!validTimestamp(data.timestamp)) {
+					setFailOpen(true);
 					return;
 				}
 				if (data.header === 'famine-2021-lifemon') {
