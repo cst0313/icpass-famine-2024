@@ -1,42 +1,51 @@
 import React, { useState, useEffect } from 'react';
-
-import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox, RadioGroup, Radio, FormGroup, Switch } from '@mui/material';
-
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { MenuItem, TextField } from '@mui/material';
 
 import Code from './Code';
+import BobaShop from './locations/BobaShop';
+import Church from './locations/Church';
+import CommunityCentre from './locations/CommunityCentre';
+import Corporation from './locations/Corporation';
+import Factory from './locations/Factory';
+import Farm from './locations/Farm';
+import FoodBank from './locations/FoodBank';
+import Hospital from './locations/Hospital';
+import ICEntertainment from './locations/ICEntertainment';
+import Lab from './locations/Lab';
+import PoliceStationPrison from './locations/PoliceStationPrison';
+import School from './locations/School';
+import YellowGambleDrug from './locations/YellowGambleDrug';
 
-export default function Admin() {
+const Admin = () => {
+  const locations = [
+    'Boba Shop',
+    'Church',
+    'Community Centre',
+    'Corporation',
+    'Factory',
+    'Farm',
+    'Food Bank',
+    'Hospital',
+    'IC Entertainment',
+    'Lab',
+    'Police Station & Prison',
+    'School',
+    'Yellow Gamble Drug',
+  ];
+
 	const [formData, setFormData] = useState({
 		food: 0,
 		happiness: 0,
 		money: 0,
 		education: 0,
 		charity: 0,
-		showcharity: false,
 		married: false,
 		jailed: false
 	});
-	const [expanded, setExpanded] = useState("");
 
-	const handleExpand = (panel) => (event, isExpanded) => {
-		setExpanded(isExpanded ? panel : "");
-	}
+  const [location, setLocation] = useState('');
 
-	function handleHappinessBlur () {
-		setFormData({...formData, happiness: Math.min(5, Math.max(-5, formData.happiness))});
-	}
-
-	function handleFoodBlur () {
-		setFormData({...formData, food: Math.min(5, Math.max(-5, formData.food))});
-	}
-
-	function handleMoneyBlur () {
-		const validMoney = Math.min(2000, Math.max(-2000, formData.money));
-		setFormData({...formData, money: validMoney - (validMoney % 100)});
-	}
-
-	const [timestamp, setTimestamp] = useState(Date.now());
+  const [timestamp, setTimestamp] = useState(Date.now());
 	const updateTimestamp = () => {
 		setTimestamp(Date.now());
 	}
@@ -46,163 +55,77 @@ export default function Admin() {
     return () => clearInterval(intervalId);
   }, []);
 
-	return (
-		<div>
-			<Card variant="outlined">
-				<Accordion expanded={expanded === 'general'} onChange={handleExpand('general')}>
-					<AccordionSummary  expandIcon={<ExpandMoreIcon />} >
-						<Typography>General settings</Typography>
-					</AccordionSummary>
-					<AccordionDetails>
-						<Typography>
-							Happiness
-						</Typography>
-						<Grid container spacing={2}>
-							<Grid item xs={10}>
-								<Slider 
-									value={formData.happiness}
-									onChange={
-										(e) => setFormData({...formData, happiness: e.target.value})
-									}
-									step={1}
-									min={-5}
-									max={5}
-								/>
-							</Grid>
-							<Grid item xs={2}>
-								<Input 
-									fullWidth
-									value={formData.happiness}
-									size="small"
-									onChange={
-										(e) => setFormData({...formData, happiness: e.target.value})
-									}
-									onBlur={handleHappinessBlur}
-									inputProps={{
-										step: 1,
-										min: -5,
-										max: 5,
-										type: 'number',
-									}}
-								/>
-							</Grid>
-						</Grid>
+  const prices = [-50, -75, -100, -125, -150];
 
-						<Typography>
-							Food
-						</Typography>
-						<Grid container spacing={2}>
-							<Grid item xs={10}>
-								<Slider 
-									value={formData.food}
-									onChange={
-										(e) => setFormData({...formData, food: e.target.value})
-									}
-									step={1}
-									min={-5}
-									max={5}
-								/>
-							</Grid>
-							<Grid item xs={2}>
-								<Input 
-									fullWidth
-									value={formData.food}
-									size="small"
-									onChange={
-										(e) => setFormData({...formData, food: e.target.value})
-									}
-									onBlur={handleFoodBlur}
-									inputProps={{
-										step: 1,
-										min: -5,
-										max: 5,
-										type: 'number',
-									}}
-								/>
-							</Grid>
-						</Grid>
+  const handleLocationChange = e => {
+    const value = e.target.value;
+    setLocation(value);
+    setFormData({
+      food: value === 6 ? 1 : value === 1 ? -3 : -1,
+      happiness: value === 6 ? 1 : value === 1 ? 6 : value === 2 ? 5 : -1,
+      money: (
+        value === 6 ? prices[Math.floor(Math.random()*prices.length)] :
+        value === 4 || value === 9 || value === 7 ? 30 :
+        value === 5 || value === 10 ? 150 :
+        value === 8 ? 120 :
+        value === 3 ? 250 :
+        value === 0 ? 100 : 0
+      ),
+      education: value === 11 ? 1 : 0,
+      charity: value === 2 ? 5 : 0,
+      married: false,
+      jailed: false
+    });
+  }
 
-						<Typography>
-							Money
-						</Typography>
-						<Grid container spacing={2}>
-							<Grid item xs={10}>
-								<Slider 
-									value={formData.money}
-									onChange={
-										(e) => setFormData({...formData, money: e.target.value})
-									}
-									step={10}
-									min={-2000}
-									max={2000}
-								/>
-							</Grid>
-							<Grid item xs={2}>
-								<Input 
-									fullWidth
-									value={formData.money}
-									size="small"
-									onChange={
-										(e) => setFormData({...formData, money: e.target.value})
-									}
-									onBlur={handleMoneyBlur}
-									inputProps={{
-										step: 100,
-										min: -2000,
-										max: 2000,
-										type: 'number',
-									}}
-								/>
-							</Grid>
-						</Grid>
-					</AccordionDetails>
-				</Accordion>
-				<Accordion expanded={expanded === 'special'} onChange={handleExpand('special')}>
-					<AccordionSummary expandIcon={<ExpandMoreIcon />} >
-						<Typography>
-							Special settings
-						</Typography>
-					</AccordionSummary>
-
-					<AccordionDetails>
-						<FormGroup>
-							<FormControlLabel checked={formData.special === "jailed"} control={<Switch onChange={
-								(e) => formData.special === "jailed" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "jailed"})
-							} />} label="Jailed" />
-							<FormControlLabel checked={formData.special === "married"} control={<Switch onChange={
-								(e) => formData.special === "married" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "married"})
-							} />} label="Married" />
-							<FormControlLabel checked={formData.special === "donor"} control={<Switch onChange={
-								(e) => formData.special === "donor" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "donor"})
-							} />} label="Donor" />
-							<FormControlLabel checked={formData.special === "recipient"} control={<Switch onChange={
-								(e) => formData.special === "recipient" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "recipient"})
-							} />} label="Recipient" />
-							<FormControlLabel checked={formData.special === "education"} control={<Switch onChange={
-								(e) => formData.special === "education" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "education"})
-							} />} label="Education" />
-							<RadioGroup row onChange={
-								(e) => setFormData({...formData, education: parseInt(e.target.value)})
-							}>
-								<FormControlLabel disabled={formData.special !== "education"} value={1} control={<Radio />} label="Secondary" />
-								<FormControlLabel disabled={formData.special !== "education"} value={2} control={<Radio />} label="University" />
-								<FormControlLabel disabled={formData.special !== "education"} value={3} control={<Radio />} label="Graduate" />
-							</RadioGroup>
-							<FormControlLabel disabled={formData.special !== "education"} checked={formData.passed} onChange={(e) => setFormData({...formData, passed: !formData.passed})} control={<Checkbox />} label="Passed" />
-						</FormGroup>
-					</AccordionDetails>
-				</Accordion>
-			</Card>
-			<Code 
-				header="famine-2023-lifemon"
-				happiness={expanded === 'general' ? parseInt(formData.happiness) : 0} 
-				food={expanded === 'general' ? parseInt(formData.food) : 0} 
-				money={expanded === 'special' ? 0 : formData.taxed && parseInt(formData.money) >= 800 ? 800 + 0.75 * (parseInt(formData.money) - 800) : parseInt(formData.money)} 
-				special={expanded === 'special' ? formData.special : false}
-				education={expanded === 'special' && formData.special === "education" ? formData.education : 0}
-				passed={expanded === 'special' && formData.passed}
-				timestamp={timestamp}
-			/>
-		</div>
-	);
+  return (
+    <>
+      <TextField
+        required
+        id="location-select"
+        size='large'
+        value={location}
+        label="Location"
+        onChange={handleLocationChange}
+        sx={{width: '20em'}}
+        select
+        fullWidth
+        margin='dense'
+      >
+        {
+          locations.map((location, i) => 
+            <MenuItem key={i} value={i}>{location}</MenuItem>
+          )
+        }
+      </TextField>
+      {
+        (location === 0) ? <BobaShop setFormData={setFormData} /> :
+        (location === 1) ? <Church setFormData={setFormData} /> :
+        (location === 2) ? <CommunityCentre setFormData={setFormData} /> :
+        (location === 3) ? <Corporation setFormData={setFormData} /> :
+        (location === 4) ? <Factory setFormData={setFormData} /> :
+        (location === 5) ? <Farm setFormData={setFormData} /> :
+        (location === 6) ? <FoodBank setFormData={setFormData} /> :
+        (location === 7) ? <Hospital setFormData={setFormData} /> :
+        (location === 8) ? <ICEntertainment setFormData={setFormData} /> :
+        (location === 9) ? <Lab setFormData={setFormData} /> :
+        (location === 10) ? <PoliceStationPrison setFormData={setFormData} /> :
+        (location === 11) ? <School setFormData={setFormData} /> :
+        (location === 12) ? <YellowGambleDrug setFormData={setFormData} /> :
+        <></>
+      }
+      <Code 
+        header="famine-2023-lifemon"
+        happiness={formData.happiness} 
+        food={formData.food} 
+        money={formData.money} 
+        special={formData.special}
+        education={formData.education}
+        passed={formData.passed}
+        timestamp={timestamp}
+      />
+    </>
+  );
 }
+
+export default Admin;

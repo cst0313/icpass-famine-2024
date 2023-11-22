@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox, RadioGroup, Radio, FormGroup, Switch } from '@mui/material';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import Code from './Code';
+import Code from '../Code';
 
-export default function AdminDB() {
-	const [formData, setFormData] = React.useState({
+export default function Admin2022() {
+	const [formData, setFormData] = useState({
 		food: 0,
 		happiness: 0,
 		money: 0,
@@ -17,7 +17,7 @@ export default function AdminDB() {
 		married: false,
 		jailed: false
 	});
-	const [expanded, setExpanded] = React.useState("");
+	const [expanded, setExpanded] = useState("");
 
 	const handleExpand = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : "");
@@ -36,6 +36,15 @@ export default function AdminDB() {
 		setFormData({...formData, money: validMoney - (validMoney % 100)});
 	}
 
+	const [timestamp, setTimestamp] = useState(Date.now());
+	const updateTimestamp = () => {
+		setTimestamp(Date.now());
+	}
+
+	useEffect(() => {
+    const intervalId = setInterval(updateTimestamp, 2000);
+    return () => clearInterval(intervalId);
+  }, []);
 
 	return (
 		<div>
@@ -123,7 +132,7 @@ export default function AdminDB() {
 									onChange={
 										(e) => setFormData({...formData, money: e.target.value})
 									}
-									step={100}
+									step={10}
 									min={-2000}
 									max={2000}
 								/>
@@ -169,9 +178,6 @@ export default function AdminDB() {
 							<FormControlLabel checked={formData.special === "recipient"} control={<Switch onChange={
 								(e) => formData.special === "recipient" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "recipient"})
 							} />} label="Recipient" />
-							<FormControlLabel checked={formData.special === "showCharity"} control={<Switch onChange={
-								(e) => formData.special === "showCharity" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "showCharity"})
-							} />} label="show" />
 							<FormControlLabel checked={formData.special === "education"} control={<Switch onChange={
 								(e) => formData.special === "education" ? setFormData({...formData, special: false}) : setFormData({...formData, special: "education"})
 							} />} label="Education" />
@@ -195,6 +201,7 @@ export default function AdminDB() {
 				special={expanded === 'special' ? formData.special : false}
 				education={expanded === 'special' && formData.special === "education" ? formData.education : 0}
 				passed={expanded === 'special' && formData.passed}
+				timestamp={timestamp}
 			/>
 		</div>
 	);

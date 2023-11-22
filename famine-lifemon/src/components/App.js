@@ -5,9 +5,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Passport from './Passport';
 import Layout from './Layout';
-import Admin from './Admin';
+import Admin2022 from './old/Admin';
 import NewUser from './NewUser';
-import NewAdmin from './NewAdmin';
+import Admin from './Admin';
 
 // Hook
 function useLocalStorage(key, initialValue) {
@@ -59,8 +59,8 @@ export default function App() {
               </> :
               <>
                 <Route index element={<NewUser setId={setId} />} />
-                <Route path="henrytsyu" element={<Admin />} />
-                <Route path="admin" element={<NewAdmin />} />
+                <Route path="henrytsyu" element={<Admin2022 />} />
+                <Route path="admin" element={<Admin />} />
                 <Route path='*' element={<NewUser setId={setId} />} />
               </>
           }
