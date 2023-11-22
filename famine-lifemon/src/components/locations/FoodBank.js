@@ -20,11 +20,11 @@ const FoodBank = ({ setFormData }) => {
           const value = e.target.value;
           setType(value);
           setFormData({
-            food: type === 0 ? amount : type === 1 ? -amount : 1,
-            happiness: type === 0 ? amount : type === 1 ? amount * 5 : amount * 3,
-            money: type === 0 ? amount * prices[Math.floor(Math.random()*prices.length)] : 0,
+            food: value === 0 ? amount : value === 1 ? -amount : 1,
+            happiness: value === 0 ? amount : value === 1 ? amount * 5 : 3,
+            money: value === 0 ? amount * prices[Math.floor(Math.random()*prices.length)] : 0,
             education: 0,
-            charity: type === 0 ? 0 : type === 1 ? amount * 5 : amount * 2,
+            charity: value === 0 ? 0 : value === 1 ? amount * 5 : 2,
             showcharity: false,
             married: false,
             jailed: false
@@ -51,9 +51,9 @@ const FoodBank = ({ setFormData }) => {
               const value = e.target.value;
               setAmount(value);
               setFormData({
-                food: -1,
-                happiness: -1,
-                money: type ? amount * 30 : amount * 50,
+                food: type === 0 ? value : -value,
+                happiness: type === 0 ? value : value * 5,
+                money: type === 0 ? value * prices[Math.floor(Math.random()*prices.length)] : 0,
                 education: 0,
                 charity: 0,
                 showcharity: false,

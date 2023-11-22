@@ -63,7 +63,7 @@ const NewAdmin = () => {
     setLocation(value);
     setFormData({
       food: value === 6 ? 1 : value === 1 ? -3 : -1,
-      happiness: value === 6 ? 1 : value === 1 ? 6 : -1,
+      happiness: value === 6 ? 1 : value === 1 ? 6 : value === 2 ? 5 : -1,
       money: (
         value === 6 ? prices[Math.floor(Math.random()*prices.length)] :
         value === 4 || value === 9 || value === 7 ? 30 :
