@@ -59,8 +59,8 @@ export default function App() {
               </> :
               <>
                 <Route index element={<NewUser setId={setId} />} />
-                <Route path="admin" element={<Admin />} />
-                <Route path="newadmin" element={<NewAdmin />} />
+                <Route path="henrytsyu" element={<Admin />} />
+                <Route path="admin" element={<NewAdmin />} />
                 <Route path='*' element={<NewUser setId={setId} />} />
               </>
           }
