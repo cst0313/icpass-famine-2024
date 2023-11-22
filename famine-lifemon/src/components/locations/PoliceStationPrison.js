@@ -26,7 +26,6 @@ const PoliceStationPrison = ({ setFormData }) => {
             money: value ? 150 : 50,
             education: 0,
             charity: 0,
-            showcharity: false,
             married: false,
             jailed: false
           });
@@ -56,7 +55,6 @@ const PoliceStationPrison = ({ setFormData }) => {
                 money: 150 + value * 100,
                 education: 0,
                 charity: 0,
-                showcharity: false,
                 married: false,
                 jailed: false
               });
@@ -91,7 +89,6 @@ const PoliceStationPrison = ({ setFormData }) => {
               ),
               education: 0,
               charity: 0,
-              showcharity: false,
               married: false,
               jailed: false
             });

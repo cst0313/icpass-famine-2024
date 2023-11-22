@@ -25,7 +25,6 @@ const FoodBank = ({ setFormData }) => {
             money: value === 0 ? amount * prices[Math.floor(Math.random()*prices.length)] : 0,
             education: 0,
             charity: value === 0 ? 0 : value === 1 ? amount * 5 : 2,
-            showcharity: false,
             married: false,
             jailed: false
           });
@@ -56,7 +55,6 @@ const FoodBank = ({ setFormData }) => {
                 money: type === 0 ? value * prices[Math.floor(Math.random()*prices.length)] : 0,
                 education: 0,
                 charity: 0,
-                showcharity: false,
                 married: false,
                 jailed: false
               });

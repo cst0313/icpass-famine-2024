@@ -65,7 +65,6 @@ export default function NewUser(props) {
       money: handleRandom(moneyList).money,
       education: handleRandom(educations).education,
       charity: 0,
-      showcharity: false,
       married: false,
       jailed: false
     });

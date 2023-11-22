@@ -26,7 +26,6 @@ const Factory = ({ setFormData }) => {
             money: value ? 30 : 130,
             education: 0,
             charity: 0,
-            showcharity: false,
             married: false,
             jailed: false
           });
@@ -56,7 +55,6 @@ const Factory = ({ setFormData }) => {
                 money: value * 30,
                 education: 0,
                 charity: 0,
-                showcharity: false,
                 married: false,
                 jailed: false
               });
@@ -87,7 +85,6 @@ const Factory = ({ setFormData }) => {
               money: value ? 130 : 30,
               education: 0,
               charity: 0,
-              showcharity: false,
               married: false,
               jailed: false
             });

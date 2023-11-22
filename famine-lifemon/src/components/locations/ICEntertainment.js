@@ -23,7 +23,6 @@ const ICEntertainment = ({ setFormData }) => {
             money: value ? (result ? 120 : 30) : (result ? 150 : 50),
             education: 0,
             charity: 0,
-            showcharity: false,
             married: false,
             jailed: false
           });
@@ -51,7 +50,6 @@ const ICEntertainment = ({ setFormData }) => {
             money: type ? (value ? 120 : 30) : (value ? 150 : 50),
             education: 0,
             charity: 0,
-            showcharity: false,
             married: false,
             jailed: false
           });

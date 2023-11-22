@@ -23,7 +23,6 @@ export default function Scanner(props) {
 		updateDoc(docRef, {
 			money: increment(-tuition),
 			education: passed ? education > snapshot.education ? education : snapshot.education : snapshot.education,
-			showcharity: false,
 		});
 		return true;
 	}
@@ -50,14 +49,12 @@ export default function Scanner(props) {
 							updateDoc(docRef, {
 								money: Math.floor(snapshot.money / 2),
 								happiness: Math.max(0, snapshot.happiness - 2),
-								showcharity: false,
 							});
 							break;
 						case "married":
 							updateDoc(docRef, {
 								happiness: snapshot.married ? snapshot.happiness : (snapshot.happiness + 6),
 								married: true,
-								showcharity: false,
 							});
 							break;
 						case "donor":
@@ -66,7 +63,6 @@ export default function Scanner(props) {
 									charity: snapshot.charity + 5,
 									food: Math.max(0, snapshot.food - 1),
 									happiness: snapshot.happiness + 5,
-									showcharity: false,
 								});
 							}
 							break;
@@ -75,12 +71,6 @@ export default function Scanner(props) {
 								charity: snapshot.charity + 2,
 								food: snapshot.food + 1,
 								happiness: snapshot.happiness + 3,
-								showcharity: false,
-							});
-							break;
-						case "showCharity":
-							updateDoc(docRef, {
-								showcharity: true,
 							});
 							break;
 						default:

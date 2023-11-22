@@ -23,7 +23,6 @@ const Church = ({ setFormData }) => {
             money: 0,
             education: 0,
             charity: 0,
-            showcharity: false,
             married: false,
             jailed: false
           });
@@ -55,7 +54,6 @@ const Church = ({ setFormData }) => {
               money: 0,
               education: 0,
               charity: 0,
-              showcharity: false,
               married: false,
               jailed: false
             });

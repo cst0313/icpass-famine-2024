@@ -21,7 +21,6 @@ const Farm = ({ setFormData }) => {
           money: value ? 150 : 50,
           education: 0,
           charity: 0,
-          showcharity: false,
           married: false,
           jailed: false
         });

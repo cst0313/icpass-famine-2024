@@ -21,7 +21,6 @@ const CommunityCentre = ({ setFormData }) => {
           money: 0,
           education: 0,
           charity: 5,
-          showcharity: false,
           married: false,
           jailed: false
         });

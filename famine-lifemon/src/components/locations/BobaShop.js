@@ -21,7 +21,6 @@ const BobaShop = ({ setFormData }) => {
           money: value ? 100 : 0,
           education: 0,
           charity: 0,
-          showcharity: false,
           married: false,
           jailed: false
         });

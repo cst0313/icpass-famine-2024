@@ -23,7 +23,6 @@ const Hospital = ({ setFormData }) => {
             money: type ? amount * 30 : amount * 50,
             education: 0,
             charity: 0,
-            showcharity: false,
             married: false,
             jailed: false
           });
@@ -51,7 +50,6 @@ const Hospital = ({ setFormData }) => {
             money: type ? amount * 30 : amount * 50,
             education: 0,
             charity: 0,
-            showcharity: false,
             married: false,
             jailed: false
           });

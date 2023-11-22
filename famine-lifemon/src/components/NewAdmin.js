@@ -39,7 +39,6 @@ const NewAdmin = () => {
 		money: 0,
 		education: 0,
 		charity: 0,
-		showcharity: false,
 		married: false,
 		jailed: false
 	});
@@ -74,7 +73,6 @@ const NewAdmin = () => {
       ),
       education: value === 11 ? 1 : 0,
       charity: value === 2 ? 5 : 0,
-      showcharity: false,
       married: false,
       jailed: false
     });
