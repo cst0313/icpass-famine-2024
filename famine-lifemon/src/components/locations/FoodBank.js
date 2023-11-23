@@ -5,8 +5,7 @@ import { TextField, MenuItem } from '@mui/material';
 const FoodBank = ({ setFormData }) => {
   const [type, setType] = useState(0);
   const [amount, setAmount] = useState(1);
-
-  const prices = [-100, -125, -150];
+  const [price, setPrice] = useState(-100);
 
   return (
     <>
@@ -22,11 +21,10 @@ const FoodBank = ({ setFormData }) => {
           setFormData({
             food: value === 0 ? amount : value === 1 ? -amount : 1,
             happiness: value === 0 ? amount : value === 1 ? amount * 5 : 3,
-            money: value === 0 ? amount * prices[Math.floor(Math.random()*prices.length)] : 0,
+            money: value === 0 ? amount * price : 0,
             education: 0,
             charity: value === 0 ? 0 : value === 1 ? amount * 5 : 2,
             married: false,
-            jailed: false
           });
         }}
         sx={{width: '20em'}}
@@ -52,11 +50,10 @@ const FoodBank = ({ setFormData }) => {
               setFormData({
                 food: type === 0 ? value : -value,
                 happiness: type === 0 ? value : value * 5,
-                money: type === 0 ? value * prices[Math.floor(Math.random()*prices.length)] : 0,
+                money: type === 0 ? value * price : 0,
                 education: 0,
                 charity: 0,
                 married: false,
-                jailed: false
               });
             }}
             sx={{width: '20em'}}
@@ -69,6 +66,36 @@ const FoodBank = ({ setFormData }) => {
                 <MenuItem key={i} value={i}>{i}</MenuItem>
               )
             }
+          </TextField>
+      }
+      {
+        (type === 0) &&
+          <TextField
+            required
+            id="price-select"
+            size='large'
+            value={price}
+            label="Price"
+            onChange={e => {
+              const value = e.target.value;
+              setPrice(value);
+              setFormData({
+                food: type === 0 ? amount : -amount,
+                happiness: type === 0 ? amount : amount * 5,
+                money: type === 0 ? amount * value : 0,
+                education: 0,
+                charity: 0,
+                married: false,
+              });
+            }}
+            sx={{width: '20em'}}
+            select
+            fullWidth
+            margin='dense'
+          >
+            <MenuItem key={0} value={-100}> $100</MenuItem>
+            <MenuItem key={1} value={-125}> $125</MenuItem>
+            <MenuItem key={2} value={-150}> $150</MenuItem>
           </TextField>
       }
     </>

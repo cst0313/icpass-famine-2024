@@ -22,7 +22,6 @@ const BobaShop = ({ setFormData }) => {
           education: 0,
           charity: 0,
           married: false,
-          jailed: false
         });
       }}
       sx={{width: '20em'}}

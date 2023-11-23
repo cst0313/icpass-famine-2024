@@ -24,7 +24,6 @@ const School = ({ setFormData }) => {
             education: result,
             charity: 0,
             married: false,
-            jailed: false
           });
         }}
         sx={{width: '20em'}}
@@ -52,7 +51,6 @@ const School = ({ setFormData }) => {
             education: value,
             charity: 0,
             married: false,
-            jailed: false
           });
         }}
         sx={{width: '20em'}}

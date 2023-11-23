@@ -17,7 +17,6 @@ export default function Stats(props) {
 	const happySymbol = "😄";
 	const foodSymbol = "🍎️";
 	const charitySymbol = "🔥";
-	const jailedSymbol = "😈";
 	const educationMap = ["Primary", "Secondary", "University", "Graduate"];
 	return (
 		<>
@@ -35,7 +34,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2" fontWeight='bold' color="#111A2D" fontSize={14} style={{textTransform: 'uppercase'}} >
-							{loading ? "Loading..." : snapshot?.jailed ? jailedSymbol : ""}{loading ? "Loading..." : snapshot?.name}
+							{loading ? "Loading..." : snapshot?.name}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>

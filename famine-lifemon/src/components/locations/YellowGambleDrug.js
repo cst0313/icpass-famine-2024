@@ -27,7 +27,6 @@ const YellowGambleDrug = ({ setFormData }) => {
             education: 0,
             charity: 0,
             married: false,
-            jailed: false
           });
         }}
         sx={{width: '20em'}}
@@ -57,7 +56,6 @@ const YellowGambleDrug = ({ setFormData }) => {
                 education: 0,
                 charity: 0,
                 married: false,
-                jailed: false
               });
             }}
             onChange={e => {
@@ -81,11 +79,10 @@ const YellowGambleDrug = ({ setFormData }) => {
             setFormData({
               food: type === 1 ? -1 : -3,
               happiness: type === 1 ? -1 : value ? 5 : 0,
-              money: type === 1 && value ? 500 : 0,
+              money: type === 1 ? value ? 500 : -300 : 0,
               education: 0,
               charity: 0,
               married: false,
-              jailed: false
             });
           }}
           sx={{width: '20em'}}

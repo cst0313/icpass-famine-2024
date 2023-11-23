@@ -22,7 +22,6 @@ const CommunityCentre = ({ setFormData }) => {
           education: 0,
           charity: 5,
           married: false,
-          jailed: false
         });
       }}
       sx={{width: '20em'}}

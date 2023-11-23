@@ -15,7 +15,6 @@ export default function Admin2022() {
 		charity: 0,
 		showcharity: false,
 		married: false,
-		jailed: false
 	});
 	const [expanded, setExpanded] = useState("");
 

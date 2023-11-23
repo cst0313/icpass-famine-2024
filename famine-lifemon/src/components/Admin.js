@@ -40,7 +40,6 @@ const Admin = () => {
 		education: 0,
 		charity: 0,
 		married: false,
-		jailed: false
 	});
 
   const [location, setLocation] = useState('');
@@ -55,8 +54,6 @@ const Admin = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const prices = [-100, -125, -150];
-
   const handleLocationChange = e => {
     const value = e.target.value;
     setLocation(value);
@@ -64,7 +61,7 @@ const Admin = () => {
       food: value === 6 ? 1 : value === 1 ? -3 : -1,
       happiness: value === 6 ? 1 : value === 1 ? 6 : value === 2 ? 5 : -1,
       money: (
-        value === 6 ? prices[Math.floor(Math.random()*prices.length)] :
+        value === 6 ? -100 :
         value === 4 || value === 9 || value === 7 ? 30 :
         value === 5 || value === 10 ? 150 :
         value === 8 ? 120 :
@@ -74,7 +71,6 @@ const Admin = () => {
       education: value === 11 ? 1 : 0,
       charity: value === 2 ? 5 : 0,
       married: false,
-      jailed: false
     });
   }
 
@@ -122,7 +118,6 @@ const Admin = () => {
         education={formData.education}
         charity={formData.charity}
         married={formData.married}
-        jailed={formData.jailed}
         timestamp={timestamp}
       />
     </>

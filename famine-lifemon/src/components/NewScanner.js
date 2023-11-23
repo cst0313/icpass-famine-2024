@@ -14,10 +14,7 @@ export default function Scanner({ setChecked, snapshot, id }) {
 	const validTimestamp = (timestamp) => 
 		Math.abs(Date.now() - timestamp) < 10000
 
-	const handleScan = (result, error) => {
-		if (!!error) {
-			console.info(error);
-		}
+	const handleScan = (result) => {
 		if (!result) {
 			return;
 		}
@@ -50,7 +47,6 @@ export default function Scanner({ setChecked, snapshot, id }) {
 				education: increment(data.education),
 				charity: increment(data.charity),
 				married: snapshot.married || data.married,
-				jailed: snapshot.jailed || data.jailed
 			});
 			setChecked(false);
 		} catch (e) {
@@ -64,7 +60,6 @@ export default function Scanner({ setChecked, snapshot, id }) {
 				scanDelay={2000}
 				constraints={{
 					facingMode: "environment",
-					
 				}}
 				onResult={handleScan}
 				style={{

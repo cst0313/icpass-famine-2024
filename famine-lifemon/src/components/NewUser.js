@@ -65,7 +65,6 @@ export default function NewUser(props) {
       education: handleRandom(educations).education,
       charity: 0,
       married: false,
-      jailed: false
     });
     props.setId(id);
   }
