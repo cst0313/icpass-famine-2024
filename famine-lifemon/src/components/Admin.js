@@ -114,14 +114,15 @@ const Admin = () => {
         (location === 12) ? <YellowGambleDrug setFormData={setFormData} /> :
         <></>
       }
-      <Code 
+      <Code
         header="famine-2023-lifemon"
-        happiness={formData.happiness} 
-        food={formData.food} 
-        money={formData.money} 
-        special={formData.special}
+        food={formData.food}
+        happiness={formData.happiness}
+        money={formData.money}
         education={formData.education}
-        passed={formData.passed}
+        charity={formData.charity}
+        married={formData.married}
+        jailed={formData.jailed}
         timestamp={timestamp}
       />
     </>

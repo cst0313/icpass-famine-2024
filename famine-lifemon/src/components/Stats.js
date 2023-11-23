@@ -35,7 +35,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2" fontWeight='bold' color="#111A2D" fontSize={14} style={{textTransform: 'uppercase'}} >
-							{loading ? "Loading..." : snapshot.jailed ? jailedSymbol : ""}{loading ? "Loading..." : snapshot.name}
+							{loading ? "Loading..." : snapshot?.jailed ? jailedSymbol : ""}{loading ? "Loading..." : snapshot?.name}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
@@ -47,7 +47,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2" fontWeight='bold' color="#111A2D" fontSize={14} style={{textTransform: 'uppercase'}} >
-							{loading ? "Loading..." : "Group " + snapshot.group}
+							{loading ? "Loading..." : "Group " + snapshot?.group}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
@@ -59,7 +59,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2" fontWeight='bold' color="#111A2D" fontSize={14}>
-							{loading ? "Loading..." : "$" + snapshot.money}
+							{loading ? "Loading..." : "$" + snapshot?.money}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
@@ -71,7 +71,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2">
-							{loading ? "Loading..." : foodSymbol.repeat(snapshot.food)}
+							{loading ? "Loading..." : foodSymbol.repeat(snapshot?.food)}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
@@ -83,7 +83,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2">
-							{loading ? "Loading..." : happySymbol.repeat(snapshot.happiness)}
+							{loading ? "Loading..." : happySymbol.repeat(snapshot?.happiness)}
 						</Typography>
 					</Grid>
 					<Grid item xs={3}>
@@ -95,7 +95,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={8}>
 						<Typography variant="body2" display={loading ? 'none' : false ? 'display' : 'none'}>
-							{loading ? "Loading..." : charitySymbol.repeat(snapshot.charity)}
+							{loading ? "Loading..." : charitySymbol.repeat(snapshot?.charity)}
 						</Typography>
 					</Grid>
 					<Grid item xs={12}>
@@ -115,7 +115,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={7}>
 						<Typography variant="body2" color="#ffffff" fontWeight='bold' style={{textTransform: 'uppercase'}} >
-							{loading ? "Loading..." : educationMap[snapshot.education]}
+							{loading ? "Loading..." : educationMap[snapshot?.education]}
 						</Typography>
 					</Grid>
 					<Grid item xs={4}>
@@ -127,7 +127,7 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={7}>
 						<Typography variant="body2" color="#ffffff" fontWeight='bold'>
-							{loading ? "Loading..." : snapshot.married ? "MARRIED" : "SINGLE"}
+							{loading ? "Loading..." : snapshot?.married ? "MARRIED" : "SINGLE"}
 						</Typography>
 					</Grid>
 					<Grid item xs={12}>
