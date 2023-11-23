@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import { Typography, Card, Accordion, AccordionSummary, AccordionDetails, Slider, Input, Grid, FormControlLabel, Checkbox, RadioGroup, Radio, FormGroup, Switch } from '@mui/material';
 
@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Code from '../Code';
 
 export default function AdminDB() {
-	const [formData, setFormData] = React.useState({
+	const [formData, setFormData] = useState({
 		food: 0,
 		happiness: 0,
 		money: 0,
@@ -17,7 +17,7 @@ export default function AdminDB() {
 		married: false,
 		jailed: false
 	});
-	const [expanded, setExpanded] = React.useState("");
+	const [expanded, setExpanded] = useState("");
 
 	const handleExpand = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : "");

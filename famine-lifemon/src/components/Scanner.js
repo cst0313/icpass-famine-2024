@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { QrReader } from "@blackbox-vision/react-qr-reader";
 import { Snackbar, Slide, Alert } from '@mui/material';
 import { doc, updateDoc, increment } from 'firebase/firestore';
@@ -7,12 +7,11 @@ import { db } from '../database/firebase';
 
 const TUITION_LEVELS = [0, 0, 0, 0];
 
-export default function Scanner(props) {
-	const [poorOpen, setPoorOpen] = React.useState(false);
-	const [failOpen, setFailOpen] = React.useState(false);
+export default function Scanner({ setChecked, snapshot, id }) {
+	const [poorOpen, setPoorOpen] = useState(false);
+	const [failOpen, setFailOpen] = useState(false);
 
-	const snapshot = props.snapshot;
-	const docRef = doc(db, "users", props.id);
+	const docRef = doc(db, "users", id);
 
 	function updateEducation(education, passed) {
 		const tuition = (TUITION_LEVELS[education])
@@ -85,7 +84,7 @@ export default function Scanner(props) {
 							});
 					}
 					setPoorOpen(true);
-					props.setChecked(false);
+					setChecked(false);
 				} else {
 					setFailOpen(true);
 				}

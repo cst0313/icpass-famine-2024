@@ -1,5 +1,4 @@
-import * as React from 'react';
-import {useState} from 'react';
+import React, { useState } from 'react';
 import { Button, Paper, TextField, MenuItem } from '@mui/material';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -71,7 +70,7 @@ export default function NewUser(props) {
     props.setId(id);
   }
 
-  const [group, setGroup] = React.useState('');
+  const [group, setGroup] = useState('');
 
   return (
     <>	
