@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 
 import { doc } from 'firebase/firestore';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
@@ -12,13 +12,18 @@ export default function Passport(props) {
 	const [snapshot, loading, error] = useDocumentData(
 		doc(db, "users", props.id)
 	);
+	useEffect(() => {
+    if (!loading && !snapshot) {
+      window.localStorage.clear();
+    }
+  }, [loading, snapshot]);
 	if (error) {
 		console.log(JSON.stringify(error));
 	}
 	return (
 		<>
 			<Stats snapshot={snapshot} loading={loading} id={props.id} />
-			<QRBlock snapshot={snapshot} lodaing={loading} id={props.id} />
+			<QRBlock snapshot={snapshot} loading={loading} id={props.id} />
 		</>
 	);
 }
