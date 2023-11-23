@@ -23,7 +23,7 @@ const Church = ({ setFormData }) => {
             money: 0,
             education: 0,
             charity: 0,
-            married: false,
+            married: value === 0,
             jailed: false
           });
         }}

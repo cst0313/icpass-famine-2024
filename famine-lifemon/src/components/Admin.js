@@ -55,7 +55,7 @@ const Admin = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  const prices = [-50, -75, -100, -125, -150];
+  const prices = [-100, -125, -150];
 
   const handleLocationChange = e => {
     const value = e.target.value;

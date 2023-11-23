@@ -6,7 +6,7 @@ const FoodBank = ({ setFormData }) => {
   const [type, setType] = useState(0);
   const [amount, setAmount] = useState(1);
 
-  const prices = [-50, -75, -100, -125, -150];
+  const prices = [-100, -125, -150];
 
   return (
     <>
