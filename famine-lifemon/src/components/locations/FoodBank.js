@@ -22,7 +22,6 @@ const FoodBank = ({ setFormData }) => {
             food: value === 0 ? amount : value === 1 ? -amount : 1,
             happiness: value === 0 ? amount : value === 1 ? amount * 5 : 3,
             money: value === 0 ? amount * price : 0,
-            education: 0,
             charity: value === 0 ? 0 : value === 1 ? amount * 5 : 2,
             married: false,
           });
@@ -51,7 +50,6 @@ const FoodBank = ({ setFormData }) => {
                 food: type === 0 ? value : -value,
                 happiness: type === 0 ? value : value * 5,
                 money: type === 0 ? value * price : 0,
-                education: 0,
                 charity: 0,
                 married: false,
               });
@@ -83,7 +81,6 @@ const FoodBank = ({ setFormData }) => {
                 food: type === 0 ? amount : -amount,
                 happiness: type === 0 ? amount : amount * 5,
                 money: type === 0 ? amount * value : 0,
-                education: 0,
                 charity: 0,
                 married: false,
               });

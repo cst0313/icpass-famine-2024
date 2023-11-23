@@ -22,7 +22,6 @@ const Corporation = ({ setFormData }) => {
             food: -1,
             happiness: -1,
             money: type === 0 ? 250 : type === 1 ? 220 : 150,
-            education: 0,
             charity: 0,
             married: false,
           });
@@ -51,7 +50,6 @@ const Corporation = ({ setFormData }) => {
                 food: -1,
                 happiness: -1,
                 money: result === 0 ? 220 : result === 1 ? 150 : 80,
-                education: 0,
                 charity: 0,
                 married: false,
               });
@@ -82,7 +80,6 @@ const Corporation = ({ setFormData }) => {
               ) : (
                 result === 0 ? 150 : 70
               ),
-              education: 0,
               charity: 0,
               married: false,
             });

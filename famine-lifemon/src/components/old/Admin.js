@@ -11,7 +11,6 @@ export default function Admin2022() {
 		food: 0,
 		happiness: 0,
 		money: 0,
-		education: 0,
 		charity: 0,
 		showcharity: false,
 		married: false,

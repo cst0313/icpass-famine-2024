@@ -37,7 +37,6 @@ const Admin = () => {
 		food: 0,
 		happiness: 0,
 		money: 0,
-		education: 0,
 		charity: 0,
 		married: false,
 	});
@@ -68,9 +67,9 @@ const Admin = () => {
         value === 3 ? 250 :
         value === 0 ? 100 : 0
       ),
-      education: value === 11 ? 1 : 0,
+      education: value === 11 ? { original: 0, pass: 1 } : undefined,
       charity: value === 2 ? 5 : 0,
-      married: false,
+      married: value === 1,
     });
   }
 

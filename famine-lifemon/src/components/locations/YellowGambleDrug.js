@@ -24,7 +24,6 @@ const YellowGambleDrug = ({ setFormData }) => {
             food: value === 2 ? -3 : -1,
             happiness: value === 0 ? 2 : value === 1 ? -1 : 5,
             money: value ? 30 : 130,
-            education: 0,
             charity: 0,
             married: false,
           });
@@ -53,7 +52,6 @@ const YellowGambleDrug = ({ setFormData }) => {
                 food: -1,
                 happiness: value < 0 ? -1 : 2,
                 money: value,
-                education: 0,
                 charity: 0,
                 married: false,
               });
@@ -80,7 +78,6 @@ const YellowGambleDrug = ({ setFormData }) => {
               food: type === 1 ? -1 : -3,
               happiness: type === 1 ? -1 : value ? 5 : 0,
               money: type === 1 ? value ? 500 : -300 : 0,
-              education: 0,
               charity: 0,
               married: false,
             });

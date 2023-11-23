@@ -21,7 +21,6 @@ const ICEntertainment = ({ setFormData }) => {
             food: -1,
             happiness: result ? 5 : -1,
             money: value ? (result ? 120 : 30) : (result ? 150 : 50),
-            education: 0,
             charity: 0,
             married: false,
           });
@@ -47,7 +46,6 @@ const ICEntertainment = ({ setFormData }) => {
             food: -1,
             happiness: value ? 5 : -1,
             money: type ? (value ? 120 : 30) : (value ? 150 : 50),
-            education: 0,
             charity: 0,
             married: false,
           });

@@ -21,10 +21,13 @@ export default function Scanner({ setChecked, snapshot, id }) {
 		try {
 			const data = JSON.parse(result.text);
 			if (!validTimestamp(data.timestamp)) {
+				console.log("Time error");
+				console.log(data);
 				setFailOpen(true);
 				return;
 			}
 			if (data.header !== 'famine-2023-lifemon') {
+				console.log("Header error");
 				setFailOpen(true);
 				return;
 			}
@@ -40,16 +43,33 @@ export default function Scanner({ setChecked, snapshot, id }) {
 				setPoorOpen(true);
 				return;
 			}
-			updateDoc(docRef, {
-				food: increment(data.food),
-				happiness: increment(data.happiness),
-				money: increment(data.money),
-				education: increment(data.education),
-				charity: increment(data.charity),
-				married: snapshot.married || data.married,
-			});
+			if (!!data.education && snapshot.education !== data.education.original) {
+				console.log(data);
+				setFailOpen(true);
+				return;
+			}
+			if (!!data.education) {
+				updateDoc(docRef, {
+					food: increment(data.food),
+					happiness: increment(data.happiness),
+					money: increment(data.money),
+					education: increment(data.education.pass),
+					charity: increment(data.charity),
+					married: snapshot.married || data.married,
+				});
+			} else {
+				updateDoc(docRef, {
+					food: increment(data.food),
+					happiness: increment(data.happiness),
+					money: increment(data.money),
+					charity: increment(data.charity),
+					married: snapshot.married || data.married,
+				});
+			}
 			setChecked(false);
 		} catch (e) {
+			console.log("Uncaught error");
+			console.log(e);
 			setFailOpen(true);
 		}
 	}
@@ -57,7 +77,6 @@ export default function Scanner({ setChecked, snapshot, id }) {
 	return (
 		<>
 			<QrReader
-				scanDelay={2000}
 				constraints={{
 					facingMode: "environment",
 				}}
