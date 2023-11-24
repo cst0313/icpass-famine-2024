@@ -16,7 +16,7 @@ const Farm = ({ setFormData }) => {
         const value = e.target.value;
         setResult(value);
         setFormData({
-          food: -1,
+          food: value ? 1 : 0,
           happiness: -1,
           money: value ? 150 : 50,
           charity: 0,

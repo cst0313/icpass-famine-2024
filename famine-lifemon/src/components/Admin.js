@@ -57,7 +57,7 @@ const Admin = () => {
     const value = e.target.value;
     setLocation(value);
     setFormData({
-      food: value === 6 ? 1 : value === 1 ? -3 : -1,
+      food: value === 6 || value === 5 ? 1 : value === 1 ? -3 : -1,
       happiness: value === 6 ? 1 : value === 1 ? 6 : value === 2 ? 5 : -1,
       money: (
         value === 6 ? -100 :
