@@ -112,6 +112,7 @@ const Admin = () => {
       <Code
         header="famine-2023-lifemon"
         food={formData.food}
+        foodBank={formData.foodBank}
         happiness={formData.happiness}
         money={formData.money}
         education={formData.education}

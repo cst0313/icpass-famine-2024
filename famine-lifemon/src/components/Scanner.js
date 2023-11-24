@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { QrReader } from "@blackbox-vision/react-qr-reader";
 import { Snackbar, Slide, Alert } from '@mui/material';
-import { doc, updateDoc, increment } from 'firebase/firestore';
+import { doc, updateDoc, increment, getDoc } from 'firebase/firestore';
 import { verify } from 'jsonwebtoken';
 
 import { db } from '../database/firebase';
@@ -10,13 +10,15 @@ import { secret } from './secret/Secret';
 export default function Scanner({ setChecked, snapshot, id }) {
 	const [poorOpen, setPoorOpen] = useState(false);
 	const [failOpen, setFailOpen] = useState(false);
+	const [bankOpen, setBankOpen] = useState(false);
 
 	const docRef = doc(db, "users", id);
+	const appleRef = doc(db, 'stock', 'apple');
 	
 	const validTimestamp = (timestamp) => 
 		Math.abs(Date.now() - timestamp) < 60000
 
-	const handleScan = (result) => {
+	const handleScan = async (result) => {
 		if (!result) {
 			return;
 		}
@@ -44,6 +46,16 @@ export default function Scanner({ setChecked, snapshot, id }) {
 			if (!!data.education && snapshot.education !== data.education.original) {
 				setFailOpen(true);
 				return;
+			}
+			if (!!data.foodBank) {
+				const appleSnap = await getDoc(appleRef);
+				if (appleSnap.data().amount + data.foodBank < 0) {
+					setBankOpen(true);
+					return;
+				}
+				updateDoc(appleRef, {
+					amount: increment(data.foodBank),
+				})
 			}
 			if (!!data.education) {
 				updateDoc(docRef, {
@@ -115,6 +127,24 @@ export default function Scanner({ setChecked, snapshot, id }) {
 					}
 				>
 					You cannot afford this
+				</Alert>
+			</Snackbar>
+			<Snackbar
+				open={bankOpen}
+				autoHideDuration={2000}
+				onClose={
+					(e) => setBankOpen(false)
+				}
+				TransitionComponent={Slide}
+			>
+				<Alert 
+					severity="error" 
+					sx={{width: '100%'}}
+					onClose={
+						(e) => setBankOpen(false)
+					}
+				>
+					Food bank has no apples left
 				</Alert>
 			</Snackbar>
 		</>
