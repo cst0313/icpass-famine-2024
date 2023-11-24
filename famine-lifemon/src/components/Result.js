@@ -7,19 +7,14 @@ import { collection, getDocs } from 'firebase/firestore';
 const charitySymbol = "🔥";
 const happySymbol = "😄";
 
-const newRow = (id, numMembers, happiness, charity, total) => {
-  return { id, numMembers, happiness, charity, total };
-}
-
 const renderRows = (rows) => {
   return rows.map(row => {
-    return newRow(
-      row.id,
-      row.numMembers,
-      happySymbol.repeat(row.happiness),
-      charitySymbol.repeat(row.charity),
-      row.total
-    );
+    return {
+      id: row.id,
+      happiness: happySymbol.repeat(Math.floor(row.happiness / row.numMembers) || 0),
+      charity: charitySymbol.repeat(Math.floor(row.charity / row.numMembers) || 0),
+      total: Math.floor((row.charity * 60 + row.happiness * 40) / row.numMembers || 0),
+    };
   });
 }
 
@@ -30,7 +25,12 @@ const Result = () => {
     const calcGroupTotal = async () => {
       const usersSnapshot = await getDocs(collection(db, 'users'));
       const groups = [...Array(10).keys()].map(i => {
-        return newRow(i + 1, 0, 0, 0, 0);
+        return {
+          id: i + 1,
+          numMembers: 0,
+          happiness: 0,
+          charity: 0,
+        };
       });
       usersSnapshot.docs.forEach(doc => {
         const data = doc.data();
@@ -38,9 +38,6 @@ const Result = () => {
         groups[group].numMembers++;
         groups[group].happiness += data.happiness;
         groups[group].charity += data.charity;
-      });
-      groups.forEach((group, i) => {
-        groups[i].total = group.charity * 60 + group.happiness * 40;
       });
       setRows(renderRows(groups));
     }
@@ -52,7 +49,6 @@ const Result = () => {
       <DataGrid
         columns={[
           { field: 'id', headerName: 'Group', flex: 2 },
-          { field: 'numMembers', headerName: 'Members', flex: 2 },
           { field: 'happiness', headerName: 'Happiness', flex: 3 },
           { field: 'charity', headerName: 'Charity', flex: 3 },
           { field: 'total', headerName: 'Total', flex: 2 },
