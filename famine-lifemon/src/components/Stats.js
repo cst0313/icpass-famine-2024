@@ -2,18 +2,15 @@ import * as React from 'react';
 
 
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import { Grid, Paper } from '@mui/material';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 
-export default function Stats(props) {
+export default function Stats({ snapshot, loading, showCharity }) {
 	const theme_2 = createTheme({
 		typography: {
 			fontFamily:'Karla'
 		}
 	});
-	const snapshot = props.snapshot;
-	const loading = props.loading;
 	const happySymbol = "😄";
 	const foodSymbol = "🍎️";
 	const charitySymbol = "🔥";
@@ -87,13 +84,13 @@ export default function Stats(props) {
 					</Grid>
 					<Grid item xs={3}>
 						<Typography variant="body2" fontWeight='medium' color="#111A2D"
-							fontSize={13} display={loading ? 'none' : false ? 'display' : 'none'}
+							fontSize={13} display={loading ? 'none' : showCharity ? 'display' : 'none'}
 						>
 							Charity
 						</Typography>
 					</Grid>
 					<Grid item xs={8}>
-						<Typography variant="body2" display={loading ? 'none' : false ? 'display' : 'none'}>
+						<Typography variant="body2" display={loading ? 'none' : showCharity ? 'display' : 'none'}>
 							{loading ? "Loading..." : charitySymbol.repeat(snapshot?.charity)}
 						</Typography>
 					</Grid>

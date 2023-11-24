@@ -7,10 +7,11 @@ import Stats from './Stats';
 import QRBlock from './QRBlock';
 
 import { db } from '../database/firebase';
+import Result from './Result';
 
-export default function Passport(props) {
+export default function Passport({ id, result }) {
 	const [snapshot, loading, error] = useDocumentData(
-		doc(db, "users", props.id)
+		doc(db, "users", id)
 	);
 	useEffect(() => {
     if (!loading && !snapshot) {
@@ -22,8 +23,12 @@ export default function Passport(props) {
 	}
 	return (
 		<>
-			<Stats snapshot={snapshot} loading={loading} id={props.id} />
-			<QRBlock snapshot={snapshot} loading={loading} id={props.id} />
+			<Stats snapshot={snapshot} loading={loading} showCharity={result} />
+			{
+				(result) ?
+					<Result /> :
+					<QRBlock snapshot={snapshot} loading={loading} id={id} />
+			}
 		</>
 	);
 }

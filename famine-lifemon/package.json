@@ -10,6 +10,7 @@
     "@fontsource/roboto": "^4.5.1",
     "@mui/icons-material": "^5.1.0",
     "@mui/material": "^5.0.6",
+    "@mui/x-data-grid": "^6.18.2",
     "@rehooks/local-storage": "github:rehooks/local-storage",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",

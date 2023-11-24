@@ -8,6 +8,7 @@ import Layout from './Layout';
 import Admin2022 from './old/Admin';
 import NewUser from './NewUser';
 import Admin from './Admin';
+import Result from './Result';
 
 // Hook
 function useLocalStorage(key, initialValue) {
@@ -54,13 +55,15 @@ export default function App() {
           {
             (localStorage.getItem("id")) ?
               <>
-                <Route index element={<Passport id={id} />} />
-                <Route path='*' element={<Passport id={id} />} />
+                <Route index element={<Passport id={id} result={false} />} />
+                <Route path='result' element={<Passport id={id} result={true} />} />
+                <Route path='*' element={<Passport id={id} result={false} />} />
               </> :
               <>
                 <Route index element={<NewUser setId={setId} />} />
                 <Route path="henrytsyu" element={<Admin2022 />} />
                 <Route path="admin" element={<Admin />} />
+                <Route path='result' element={<Result />} />
                 <Route path='*' element={<NewUser setId={setId} />} />
               </>
           }
