@@ -5,107 +5,83 @@ import { doc, updateDoc, increment } from 'firebase/firestore';
 
 import { db } from '../database/firebase';
 
-const TUITION_LEVELS = [0, 0, 0, 0];
-
 export default function Scanner({ setChecked, snapshot, id }) {
 	const [poorOpen, setPoorOpen] = useState(false);
 	const [failOpen, setFailOpen] = useState(false);
 
 	const docRef = doc(db, "users", id);
-
-	function updateEducation(education, passed) {
-		const tuition = (TUITION_LEVELS[education])
-		if (snapshot.money < tuition) {
-			setPoorOpen(true);
-			return false;
-		}
-		updateDoc(docRef, {
-			money: increment(-tuition),
-			education: passed ? education > snapshot.education ? education : snapshot.education : snapshot.education,
-		});
-		return true;
-	}
 	
 	const validTimestamp = (timestamp) => 
 		Math.abs(Date.now() - timestamp) < 10000
 
-	function handleResult(result, error) {
-		if (!!result) {
-			try {
-				const data = JSON.parse(result.text);
-				if (!validTimestamp(data.timestamp)) {
-					setFailOpen(true);
-					return;
-				}
-				if (data.header === 'famine-2023-lifemon') {
-					switch (data.special) {
-						case "education":
-							if (!updateEducation(data.education, data.passed)) {
-								return;
-							}
-							break;
-						case "jailed":
-							updateDoc(docRef, {
-								money: Math.floor(snapshot.money / 2),
-								happiness: Math.max(0, snapshot.happiness - 2),
-							});
-							break;
-						case "married":
-							updateDoc(docRef, {
-								happiness: snapshot.married ? snapshot.happiness : (snapshot.happiness + 6),
-								married: true,
-							});
-							break;
-						case "donor":
-							if (snapshot.food > 0) {
-								updateDoc(docRef, {
-									charity: snapshot.charity + 5,
-									food: Math.max(0, snapshot.food - 1),
-									happiness: snapshot.happiness + 5,
-								});
-							}
-							break;
-						case "recipient":
-							updateDoc(docRef, {
-								charity: snapshot.charity + 2,
-								food: snapshot.food + 1,
-								happiness: snapshot.happiness + 3,
-							});
-							break;
-						default:
-							if (snapshot.money + data.money < 0) {
-								setPoorOpen(true);
-								return;
-							}
-							updateDoc(docRef, {
-								money: increment(data.money),
-								happiness: Math.max(0, snapshot.happiness + data.happiness),
-								food: Math.max(0, snapshot.food + data.food),
-							});
-					}
-					setPoorOpen(true);
-					setChecked(false);
-				} else {
-					setFailOpen(true);
-				}
-			} catch (e) {
-				setFailOpen(true);
-				throw e;
-			}
+	const handleScan = (result) => {
+		if (!result) {
+			return;
 		}
-		if (!!error) {
-			console.info(error);
+		try {
+			const data = JSON.parse(result.text);
+			if (!validTimestamp(data.timestamp)) {
+				console.log("Time error");
+				console.log(data);
+				setFailOpen(true);
+				return;
+			}
+			if (data.header !== 'famine-2023-lifemon') {
+				console.log("Header error");
+				setFailOpen(true);
+				return;
+			}
+			if (snapshot.food + data.food < 0) {
+				setPoorOpen(true);
+				return;
+			}
+			if (snapshot.happiness + data.happiness < 0) {
+				setPoorOpen(true);
+				return;
+			}
+			if (snapshot.money + data.money < 0) {
+				setPoorOpen(true);
+				return;
+			}
+			if (!!data.education && snapshot.education !== data.education.original) {
+				console.log(data);
+				setFailOpen(true);
+				return;
+			}
+			if (!!data.education) {
+				updateDoc(docRef, {
+					food: increment(data.food),
+					happiness: increment(data.happiness),
+					money: increment(data.money),
+					education: increment(data.education.pass),
+					charity: increment(data.charity),
+					married: snapshot.married || data.married,
+				});
+			} else {
+				updateDoc(docRef, {
+					food: increment(data.food),
+					happiness: increment(data.happiness),
+					money: increment(data.money),
+					charity: increment(data.charity),
+					married: snapshot.married || data.married,
+				});
+			}
+			setChecked(false);
+		} catch (e) {
+			console.log("Uncaught error");
+			console.log(e);
+			setFailOpen(true);
 		}
 	}
 
 	return (
 		<>
 			<QrReader
-				scanDelay={2000}
+			scanDelay={1000}
 				constraints={{
-					facingMode: "environment"
+					facingMode: "environment",
 				}}
-				onResult={handleResult}
+				onResult={handleScan}
 				style={{
 					width: '100%'
 				}}

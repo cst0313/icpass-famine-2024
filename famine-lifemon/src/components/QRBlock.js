@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 
-import NewScanner from './NewScanner';
+import Scanner from './Scanner';
 import { FormGroup, FormControlLabel, Typography } from '@mui/material';
 import { ThemeProvider,createTheme } from '@mui/material/styles';
 
@@ -14,7 +14,7 @@ export default function QRBlock(props) {
 	}
 
 	if (checked) {
-		block = <NewScanner setChecked={setChecked} snapshot={props.snapshot} id={props.id} />;
+		block = <Scanner setChecked={setChecked} snapshot={props.snapshot} id={props.id} />;
 	} else {
 		block = null;
 	}
