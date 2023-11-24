@@ -27,7 +27,7 @@ export default function Scanner({ setChecked, snapshot, id }) {
 	}
 	
 	const validTimestamp = (timestamp) => 
-		Math.abs(Date.now() - timestamp) < 10000
+		Math.abs(Date.now() - timestamp) < 60000
 
 	function handleResult(result, error) {
 		if (!!result) {

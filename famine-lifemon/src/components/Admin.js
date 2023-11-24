@@ -49,7 +49,7 @@ const Admin = () => {
 	}
 
 	useEffect(() => {
-    const intervalId = setInterval(updateTimestamp, 2000);
+    const intervalId = setInterval(updateTimestamp, 10000);
     return () => clearInterval(intervalId);
   }, []);
 

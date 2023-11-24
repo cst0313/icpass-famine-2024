@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { QrReader } from "@blackbox-vision/react-qr-reader";
 import { Snackbar, Slide, Alert } from '@mui/material';
 import { doc, updateDoc, increment } from 'firebase/firestore';
+import { verify } from 'jsonwebtoken';
 
 import { db } from '../database/firebase';
+import { secret } from './secret/Secret';
 
 export default function Scanner({ setChecked, snapshot, id }) {
 	const [poorOpen, setPoorOpen] = useState(false);
@@ -12,23 +14,19 @@ export default function Scanner({ setChecked, snapshot, id }) {
 	const docRef = doc(db, "users", id);
 	
 	const validTimestamp = (timestamp) => 
-		Math.abs(Date.now() - timestamp) < 10000
+		Math.abs(Date.now() - timestamp) < 60000
 
 	const handleScan = (result) => {
 		if (!result) {
 			return;
 		}
 		try {
-			const data = JSON.parse(result.text);
+			const data = verify(result.text, secret);
 			if (!validTimestamp(data.timestamp)) {
-				console.log("Time error");
-				console.log(data);
 				setFailOpen(true);
 				return;
 			}
 			if (data.header !== 'famine-2023-lifemon') {
-				console.log("Header error");
-				setFailOpen(true);
 				return;
 			}
 			if (snapshot.food + data.food < 0) {
@@ -44,7 +42,6 @@ export default function Scanner({ setChecked, snapshot, id }) {
 				return;
 			}
 			if (!!data.education && snapshot.education !== data.education.original) {
-				console.log(data);
 				setFailOpen(true);
 				return;
 			}
@@ -68,8 +65,6 @@ export default function Scanner({ setChecked, snapshot, id }) {
 			}
 			setChecked(false);
 		} catch (e) {
-			console.log("Uncaught error");
-			console.log(e);
 			setFailOpen(true);
 		}
 	}
