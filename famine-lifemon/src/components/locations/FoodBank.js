@@ -23,7 +23,7 @@ const FoodBank = ({ setFormData }) => {
             foodBank: value === 1 ? amount : value === 2 ? -1 : 0,
             happiness: value === 0 ? amount : value === 1 ? amount * 5 : 3,
             money: value === 0 ? amount * price : 0,
-            charity: value === 0 ? 0 : value === 1 ? amount * 5 : 2,
+            charity: 0,
             married: false,
           });
         }}
