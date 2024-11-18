@@ -19,7 +19,7 @@ const CommunityCentre = ({ setFormData }) => {
           food: -1,
           happiness: 2,
           money: value ? 100 : 0,
-          charity: 5,
+          charity: value? 5: 0,
           married: false,
         });
       }}
