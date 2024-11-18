@@ -23,7 +23,7 @@ const Factory = ({ setFormData }) => {
           setFormData({
             food: -1,
             happiness: -1,
-            money: value ? 30 : 130,
+            money: 30,
             charity: 0,
             married: false,
           });
@@ -34,10 +34,9 @@ const Factory = ({ setFormData }) => {
         margin='dense'
       >
         <MenuItem key={0} value={true}>Factory Worker</MenuItem>
-        <MenuItem key={1} value={false}>Sewing Worker</MenuItem>
+        {}
       </TextField>
-      {
-        (type) ?
+        {/* (type) ? */}
           <TextField
             required
             id="amount-select"
@@ -65,34 +64,9 @@ const Factory = ({ setFormData }) => {
                 <MenuItem key={i} value={i}>{i}</MenuItem>
               )
             }
-          </TextField> :
-          <TextField
-          required
-          id="result-select"
-          size='large'
-          value={result}
-          label="Result"
-          onChange={e => {
-            const value = e.target.value;
-            setResult(value);
-            setFormData({
-              food: -1,
-              happiness: -1,
-              money: value ? 130 : 30,
-              charity: 0,
-              married: false,
-            });
-          }}
-          sx={{width: '20em'}}
-          select
-          fullWidth
-          margin='dense'
-        >
-          <MenuItem key={0} value={true}>Successful</MenuItem>
-          <MenuItem key={1} value={false}>Fail</MenuItem>
-        </TextField>
-      }
-    </>
+          </TextField>
+          {}
+      </>
   )
 }
 
