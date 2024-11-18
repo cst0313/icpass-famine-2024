@@ -8,22 +8,19 @@ const PoliceStationPrison = ({ setFormData }) => {
   const [result, setResult] = useState(0);
 
   return (
-    <>
-      <TextField
+    <TextField
         required
-        id="type-select"
+        id="amount-select"
         size='large'
-        value={type}
-        label="Type"
+        value={amount}
+        label="Amount"
         onChange={e => {
           const value = e.target.value;
-          setType(value);
-          setAmount(0);
-          setResult(0);
+          setAmount(value);
           setFormData({
-            food: value ? -1 : 0,
-            happiness: value ? -1 : 0,
-            money: value ? 150 : 50,
+            food: -1,
+            happiness: -1,
+            money: 150 + value * 100,
             charity: 0,
             married: false,
           });
@@ -33,73 +30,12 @@ const PoliceStationPrison = ({ setFormData }) => {
         fullWidth
         margin='dense'
       >
-        <MenuItem key={0} value={true}>Police</MenuItem>
-        <MenuItem key={1} value={false}>Prisoner</MenuItem>
+        {
+          ([...Array(6).keys()]).map(i => 
+            <MenuItem key={i} value={i}>{i}</MenuItem>
+          )
+        }
       </TextField>
-      {
-        (type) ?
-          <TextField
-            required
-            id="amount-select"
-            size='large'
-            value={amount}
-            label="Amount"
-            onChange={e => {
-              const value = e.target.value;
-              setAmount(value);
-              setFormData({
-                food: -1,
-                happiness: -1,
-                money: 150 + value * 100,
-                charity: 0,
-                married: false,
-              });
-            }}
-            sx={{width: '20em'}}
-            select
-            fullWidth
-            margin='dense'
-          >
-            {
-              ([...Array(6).keys()]).map(i => 
-                <MenuItem key={i} value={i}>{i}</MenuItem>
-              )
-            }
-          </TextField> :
-          <TextField
-          required
-          id="result-select"
-          size='large'
-          value={result}
-          label="Result"
-          onChange={e => {
-            const value = e.target.value;
-            setResult(value);
-            setFormData({
-              food: 0,
-              happiness: 0,
-              money: (
-                value === 0 ? 50 :
-                value === 1 ? -200 :
-                value === 2 ? -150 : 100
-              ),
-              charity: 0,
-              married: false,
-            });
-          }}
-          sx={{width: '20em'}}
-          select
-          fullWidth
-          margin='dense'
-        >
-          <MenuItem key={0} value={0}>All Silent</MenuItem>
-          <MenuItem key={1} value={1}>All Betray</MenuItem>
-          <MenuItem key={2} value={2}>Some Silent</MenuItem>
-          <MenuItem key={3} value={3}>Some Betray</MenuItem>
-        </TextField>
-      }
-    </>
-  )
-}
-
+    )
+  }
 export default PoliceStationPrison;
