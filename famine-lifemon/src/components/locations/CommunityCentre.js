@@ -16,10 +16,10 @@ const CommunityCentre = ({ setFormData }) => {
         const value = e.target.value;
         setType(value);
         setFormData({
-          food: value ? -1 : 0,
-          happiness: -1,
-          money: 0,
-          charity: value ? 0 : 5,
+          food: -1,
+          happiness: 2,
+          money: value ? 100 : 0,
+          charity: 5,
           married: false,
         });
       }}
@@ -28,8 +28,8 @@ const CommunityCentre = ({ setFormData }) => {
       fullWidth
       margin='dense'
     >
-      <MenuItem key={0} value={true}>Food Delivery</MenuItem>
-      <MenuItem key={1} value={false}>Waste Collection</MenuItem>
+      <MenuItem key={0} value={true}>Recycling Operative</MenuItem>
+      <MenuItem key={1} value={false}>Curling</MenuItem>
     </TextField>
   )
 }
