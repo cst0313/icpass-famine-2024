@@ -21,7 +21,7 @@ const Corporation = ({ setFormData }) => {
           setFormData({
             food: -1,
             happiness: -1,
-            money: type === 0 ? 250 : type === 1 ? 220 : 150,
+            money: type === 0 ? 250 : (type === 1 ? 220 : 150),
             charity: 0,
             married: false,
           });
@@ -33,7 +33,6 @@ const Corporation = ({ setFormData }) => {
       >
         <MenuItem key={0} value={0}>Banker</MenuItem>
         <MenuItem key={1} value={1}>Logistics Specialist</MenuItem>
-        <MenuItem key={2} value={2}>Accountant</MenuItem>
       </TextField>
       {
         (type === 1) ?
@@ -49,7 +48,7 @@ const Corporation = ({ setFormData }) => {
               setFormData({
                 food: -1,
                 happiness: -1,
-                money: result === 0 ? 220 : result === 1 ? 150 : 80,
+                money: result === 0 ? 220 : (result === 1 ? 150 : 80),
                 charity: 0,
                 married: false,
               });
@@ -65,21 +64,17 @@ const Corporation = ({ setFormData }) => {
           </TextField> :
           <TextField
           required
-          id="result-select"
+          id="amount-select"
           size='large'
-          value={result}
-          label="Result"
+          value={amount}
+          label="# Correct"
           onChange={e => {
             const value = e.target.value;
-            setResult(value);
+            setAmount(value);
             setFormData({
               food: -1,
               happiness: -1,
-              money: type === 0 ? (
-                result === 0 ? 250 : 50
-              ) : (
-                result === 0 ? 150 : 70
-              ),
+              money: amount * 50 + (5 - amount) * 20,
               charity: 0,
               married: false,
             });
@@ -89,8 +84,11 @@ const Corporation = ({ setFormData }) => {
           fullWidth
           margin='dense'
         >
-          <MenuItem key={0} value={0}>Successful</MenuItem>
-          <MenuItem key={1} value={1}>Fail</MenuItem>
+          {
+            (Array.from({length: 5}, (_, i) => i + 1)).map(i => 
+              <MenuItem key={i} value={i}>{i}</MenuItem>
+            )
+          }
         </TextField>
       }
     </>
