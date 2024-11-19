@@ -20,10 +20,10 @@ const FoodBank = ({ setFormData }) => {
           setType(value);
           setFormData({
             food: value === 0 ? amount : value === 1 ? -amount : 1,
-            foodBank: value === 1 ? amount : value === 2 ? -1 : 0,
+            foodBank: value === 0 ? 0 : value === 1 ? amount : -1,
             happiness: value === 0 ? amount : value === 1 ? amount * 5 : 3,
             money: value === 0 ? amount * price : 0,
-            charity: 0,
+            charity: value === 0 ? 0 : value === 1 ? amount * 5 : 2,
             married: false,
           });
         }}
