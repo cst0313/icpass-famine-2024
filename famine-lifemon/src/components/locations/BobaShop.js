@@ -7,18 +7,18 @@ const BobaShop = ({ setFormData }) => {
 
   return (
     <TextField
-      required
-      id="result-select"
-      size='large'
-      value={result}
-      label="Result"
+      // required
+      // id="result-select"
+      // size='large'
+      // value={result}
+      // label="Result"
       onChange={e => { 
         const value = e.target.value;
         setResult(value);
         setFormData({
           food: 1,
           happiness: 2,
-          money: value ? -100 : 0,
+          money: -100,
           charity: 0,
           married: false,
         });
@@ -28,8 +28,6 @@ const BobaShop = ({ setFormData }) => {
       fullWidth
       margin='dense'
     >
-      <MenuItem key={0} value={true}>Successful</MenuItem>
-      <MenuItem key={1} value={false}>Fail</MenuItem>
     </TextField>
   )
 }
