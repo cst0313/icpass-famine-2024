@@ -33,5 +33,5 @@ const Church = ({ setFormData }) => {
     </TextField>
   )
 }
-
+/* query in group and add 3 to the group members to prevent scan*/
 export default Church;
