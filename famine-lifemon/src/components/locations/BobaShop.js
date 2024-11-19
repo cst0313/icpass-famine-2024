@@ -16,9 +16,9 @@ const BobaShop = ({ setFormData }) => {
         const value = e.target.value;
         setResult(value);
         setFormData({
-          food: -1,
-          happiness: -1,
-          money: value ? 100 : 0,
+          food: 1,
+          happiness: 2,
+          money: value ? -100 : 0,
           charity: 0,
           married: false,
         });
