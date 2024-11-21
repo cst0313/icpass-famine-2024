@@ -18,8 +18,8 @@ const CommunityCentre = ({ setFormData }) => {
         setFormData({
           food: -1,
           happiness: 2,
-          money: value ? 100 : 0,
-          charity: value? 5: 0,
+          money: value === 0 ? 100 : 0,
+          charity: value === 0 ? 5: 0,
           married: false,
         });
       }}
@@ -28,8 +28,8 @@ const CommunityCentre = ({ setFormData }) => {
       fullWidth
       margin='dense'
     >
-      <MenuItem key={0} value={true}>Recycling Operative</MenuItem>
-      <MenuItem key={1} value={false}>Curling</MenuItem>
+      <MenuItem key={0} value={0}>Recycling Operative</MenuItem>
+      <MenuItem key={1} value={1}>Curling</MenuItem>
     </TextField>
   )
 }
