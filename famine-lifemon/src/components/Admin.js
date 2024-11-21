@@ -12,8 +12,10 @@ import FoodBank from './locations/FoodBank';
 import Hospital from './locations/Hospital';
 import ICEntertainment from './locations/ICEntertainment';
 import Lab from './locations/Lab';
+import Library from './locations/Library';
 import PoliceStationPrison from './locations/PoliceStationPrison';
 import School from './locations/School';
+import SportsCentre from './locations/SportsCentre';
 import YellowGambleDrug from './locations/YellowGambleDrug';
 
 const Admin = () => {
@@ -28,8 +30,10 @@ const Admin = () => {
     'Hospital',
     'IC Entertainment',
     'Lab',
+    'Library',
     'Police Station & Prison',
     'School',
+    'Sports Centre',
     'Yellow Gamble Drug',
   ];
 
@@ -57,18 +61,18 @@ const Admin = () => {
     const value = e.target.value;
     setLocation(value);
     setFormData({
-      food: value === 6 || value === 5 ? 1 : value === 1 ? -3 : -1,
-      happiness: value === 6 ? 1 : value === 1 ? 6 : value === 2 ? 5 : -1,
+      food: value === 0 || value === 6 ? 1 : value === 10 ? 0 : value === 1 ? -3 : -1,
+      happiness: value === 6 ? 1 : value === 1 ? 6 : value === 2 ? 5 : value === 0 || value === 10 ? 2 : -1,
       money: (
-        value === 6 ? -100 :
+        value === 0 || value === 6 ? -100 :
         value === 4 || value === 9 || value === 7 ? 30 :
         value === 5 || value === 10 ? 150 :
         value === 8 ? 120 :
         value === 3 ? 250 :
         value === 0 ? 100 : 0
       ),
-      education: value === 11 ? { original: 0, pass: 1 } : undefined,
-      charity: value === 2 ? 5 : 0,
+      education: value === 12 ? { original: 0, pass: 1 } : undefined,
+      charity: value === 2 || value === 10 ? 5 : 0,
       married: value === 1,
     });
   }
@@ -104,9 +108,11 @@ const Admin = () => {
         (location === 7) ? <Hospital setFormData={setFormData} /> :
         (location === 8) ? <ICEntertainment setFormData={setFormData} /> :
         (location === 9) ? <Lab setFormData={setFormData} /> :
-        (location === 10) ? <PoliceStationPrison setFormData={setFormData} /> :
-        (location === 11) ? <School setFormData={setFormData} /> :
-        (location === 12) ? <YellowGambleDrug setFormData={setFormData} /> :
+        (location === 10) ? <Library setFormData={setFormData} /> : 
+        (location === 11) ? <PoliceStationPrison setFormData={setFormData} /> :
+        (location === 12) ? <School setFormData={setFormData} /> :
+        (location === 13) ? <SportsCentre setFormData={setFormData} /> :
+        (location === 14) ? <YellowGambleDrug setFormData={setFormData} /> :
         <></>
       }
       <Code
